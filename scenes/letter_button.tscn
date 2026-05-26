@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://od34dlw3bmb4"]
+
+[ext_resource type="Texture2D" uid="uid://ykfbyh3n1vts" path="res://extras/ButtonsIcons/IconButton_Large_Blank_Circle.png" id="1_udx38"]
+[ext_resource type="Texture2D" uid="uid://dyppyn1gtu033" path="res://extras/ButtonsIcons/IconButton_Large_Blue_Circle.png" id="2_5y6ud"]
+[ext_resource type="Texture2D" uid="uid://wg3wb6rmxo8o" path="res://extras/ButtonsIcons/IconButton_Large_Green_Circle.png" id="3_a1ljp"]
+[ext_resource type="Texture2D" uid="uid://be7kk2ym81m4o" path="res://extras/ButtonsIcons/IconButton_Large_GreyOutline_Circle.png" id="4_k7axu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5y6ud"]
+texture = ExtResource("1_udx38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1ljp"]
+texture = ExtResource("2_5y6ud")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k7axu"]
+texture = ExtResource("3_a1ljp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3j32"]
+texture = ExtResource("4_k7axu")
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -43.0
+offset_right = 35.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+focus_behavior_recursive = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_5y6ud")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a1ljp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_k7axu")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_b3j32")

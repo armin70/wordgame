@@ -1,0 +1,17 @@
+# Godot
+.godot/
+.import/
+
+# Android builds
+android/build/
+*.aar
+*.apk
+*.aab
+
+# Export
+export/
+export_presets.cfg
+
+# OS junk
+.DS_Store
+Thumbs.db

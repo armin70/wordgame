@@ -1,0 +1,1896 @@
+[
+  {
+    "id": 1,
+    "seed": "نگاه",
+    "letters": [
+      "ن",
+      "گ",
+      "ا",
+      "ه"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "انگ",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "هنگ",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "گاه",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناگه",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نگاه",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "گناه",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.75
+  },
+  {
+    "id": 2,
+    "seed": "آرام",
+    "letters": [
+      "ا",
+      "ر",
+      "ا",
+      "م"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "آرم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "آمر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ارم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "امر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "رام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "آرام",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "آمار",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 8,
+    "max_score": 8.5
+  },
+  {
+    "id": 3,
+    "seed": "آغاز",
+    "letters": [
+      "آ",
+      "غ",
+      "ا",
+      "ز"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "آغا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "زاغ",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "غاز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "آغاز",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 4,
+    "max_score": 4.25
+  },
+  {
+    "id": 4,
+    "seed": "امید",
+    "letters": [
+      "ا",
+      "م",
+      "ی",
+      "د"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "امی",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "یاد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "امید",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "آدم",
+        "length": 4,
+        "weight": 1
+      },
+      {
+        "word": "مادی",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 7,
+    "max_score": 7.5
+  },
+  {
+    "id": 5,
+    "seed": "امین",
+    "letters": [
+      "ا",
+      "م",
+      "ی",
+      "ن"
+    ],
+    "difficulty": "hard",
+    "words": [
+      {
+        "word": "امن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "امی",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مین",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نای",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نیا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نیم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "امین",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "ایمن",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "میان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "مینا",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نامی",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 13,
+    "max_score": 14.25
+  },
+  {
+    "id": 6,
+    "seed": "ایده",
+    "letters": [
+      "ا",
+      "ی",
+      "د",
+      "ه"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "دیه",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "هدی",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "یاد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ایده",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "دایه",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "هادی",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.75
+  },
+  {
+    "id": 7,
+    "seed": "بازار",
+    "letters": [
+      "ب",
+      "ا",
+      "ز",
+      "ا",
+      "ر"
+    ],
+    "difficulty": "hard",
+    "words": [
+      {
+        "word": "ابا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ابر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ارز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "باز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "برا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "راز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ربا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "زار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "زبر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ازار",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "بارز",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "ابراز",
+        "length": 5,
+        "weight": 1.6
+      },
+      {
+        "word": "ابزار",
+        "length": 5,
+        "weight": 1.6
+      },
+      {
+        "word": "بازار",
+        "length": 5,
+        "weight": 1.6
+      }
+    ],
+    "total_words": 15,
+    "max_score": 17.7
+  },
+  {
+    "id": 8,
+    "seed": "باران",
+    "letters": [
+      "ب",
+      "ا",
+      "ر",
+      "ا",
+      "ن"
+    ],
+    "difficulty": "hard",
+    "words": [
+      {
+        "word": "ابا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ابر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ابن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بنا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ران",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ربا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناب",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "انار",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "برنا",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "انبار",
+        "length": 5,
+        "weight": 1.6
+      },
+      {
+        "word": "باران",
+        "length": 5,
+        "weight": 1.6
+      }
+    ],
+    "total_words": 13,
+    "max_score": 15.7
+  },
+  {
+    "id": 9,
+    "seed": "بینا",
+    "letters": [
+      "ب",
+      "ی",
+      "ن",
+      "ا"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "ابن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بنا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بین",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناب",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نای",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نبا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نبی",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نیا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بانی",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "بیان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "بینا",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نایب",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 12,
+    "max_score": 13
+  },
+  {
+    "id": 10,
+    "seed": "توان",
+    "letters": [
+      "ت",
+      "و",
+      "ا",
+      "ن"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "ناو",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نوا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "وات",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "توان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "ناتو",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 5,
+    "max_score": 5.5
+  },
+  {
+    "id": 11,
+    "seed": "جوان",
+    "letters": [
+      "ج",
+      "و",
+      "ا",
+      "ن"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "اوج",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "جان",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناو",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نوا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "جوان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نجوا",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.5
+  },
+  {
+    "id": 12,
+    "seed": "خرید",
+    "letters": [
+      "خ",
+      "ر",
+      "ی",
+      "د"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "خرد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "خیر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دری",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دیر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "خرید",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 5,
+    "max_score": 5.25
+  },
+  {
+    "id": 13,
+    "seed": "دانش",
+    "letters": [
+      "د",
+      "ا",
+      "ن",
+      "ش"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "شاد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شان",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شدن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شنا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ندا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دانش",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.25
+  },
+  {
+    "id": 14,
+    "seed": "درخت",
+    "letters": [
+      "د",
+      "ر",
+      "خ",
+      "ت"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "ترد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "خرد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دخت",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "رخت",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دختر",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "درخت",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.5
+  },
+  {
+    "id": 15,
+    "seed": "دریا",
+    "letters": [
+      "د",
+      "ر",
+      "ی",
+      "ا"
+    ],
+    "difficulty": "hard",
+    "words": [
+      {
+        "word": "دار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "درا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دری",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دیر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "راد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "رای",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ردا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ردی",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ریا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "یاد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "یار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دایر",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "دریا",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "دیار",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 14,
+    "max_score": 14.75
+  },
+  {
+    "id": 16,
+    "seed": "دوران",
+    "letters": [
+      "د",
+      "و",
+      "ر",
+      "ا",
+      "ن"
+    ],
+    "difficulty": "hard",
+    "words": [
+      {
+        "word": "دار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "درو",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دوا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دور",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دون",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "راد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ران",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ردا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "رند",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "روا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "رود",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نار",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناو",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ندا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نوا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نور",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ورا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ورد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "اردو",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "دارو",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "داور",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "درون",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "دوار",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "روان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "روند",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نادر",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نارو",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نوار",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نورد",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "وارد",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "اروند",
+        "length": 5,
+        "weight": 1.6
+      },
+      {
+        "word": "دوران",
+        "length": 5,
+        "weight": 1.6
+      },
+      {
+        "word": "ناورد",
+        "length": 5,
+        "weight": 1.6
+      }
+    ],
+    "total_words": 33,
+    "max_score": 36.3
+  },
+  {
+    "id": 17,
+    "seed": "زمان",
+    "letters": [
+      "ز",
+      "م",
+      "ا",
+      "ن"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "امن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "زمان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نماز",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.5
+  },
+  {
+    "id": 18,
+    "seed": "زمین",
+    "letters": [
+      "ز",
+      "م",
+      "ی",
+      "ن"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "زین",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "میز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مین",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نیز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نیم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "زمین",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "مزین",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 7,
+    "max_score": 7.5
+  },
+  {
+    "id": 19,
+    "seed": "ساده",
+    "letters": [
+      "س",
+      "ا",
+      "د",
+      "ه"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "اسد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "داس",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "داه",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سها",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ساده",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 5,
+    "max_score": 5.25
+  },
+  {
+    "id": 20,
+    "seed": "سلام",
+    "letters": [
+      "س",
+      "ل",
+      "ا",
+      "م"
+    ],
+    "difficulty": "hard",
+    "words": [
+      {
+        "word": "اسم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "الم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "امل",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لمس",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ملا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ملس",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سالم",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "سلام",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 12,
+    "max_score": 12.5
+  },
+  {
+    "id": 21,
+    "seed": "شادی",
+    "letters": [
+      "ش",
+      "ا",
+      "د",
+      "ی"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "شاد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "یاد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شادی",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "شاید",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "شیاد",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "شیدا",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.5
+  },
+  {
+    "id": 22,
+    "seed": "شمال",
+    "letters": [
+      "ش",
+      "م",
+      "ا",
+      "ل"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "الم",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "امل",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ملا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شامل",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "شمال",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "مالش",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 10,
+    "max_score": 10.75
+  },
+  {
+    "id": 23,
+    "seed": "شروع",
+    "letters": [
+      "ش",
+      "ر",
+      "و",
+      "ع"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "روش",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شرع",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شعر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شور",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "عرش",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "شروع",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "شعور",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 7,
+    "max_score": 7.5
+  },
+  {
+    "id": 24,
+    "seed": "عاقل",
+    "letters": [
+      "ع",
+      "ا",
+      "ق",
+      "ل"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "اقل",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "عقل",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "علق",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "قال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "قلع",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لقا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "عاقل",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 7,
+    "max_score": 7.25
+  },
+  {
+    "id": 25,
+    "seed": "قدرت",
+    "letters": [
+      "ق",
+      "د",
+      "ر",
+      "ت"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "ترد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دقت",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "رقت",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "قدر",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "قدرت",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 5,
+    "max_score": 5.25
+  },
+  {
+    "id": 26,
+    "seed": "کتاب",
+    "letters": [
+      "ک",
+      "ت",
+      "ا",
+      "ب"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "باک",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "تاب",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "تاک",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "کاتب",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "کتاب",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 5,
+    "max_score": 5.5
+  },
+  {
+    "id": 27,
+    "seed": "کلاس",
+    "letters": [
+      "ک",
+      "ل",
+      "ا",
+      "س"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "الک",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ساک",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لاس",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لاک",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "کال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "کسل",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سالک",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "کلاس",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 9,
+    "max_score": 9.5
+  },
+  {
+    "id": 28,
+    "seed": "لباس",
+    "letters": [
+      "ل",
+      "ب",
+      "ا",
+      "س"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "اسب",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بسا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "بلا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سال",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "سلب",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لاس",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "لباس",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 8,
+    "max_score": 8.25
+  },
+  {
+    "id": 29,
+    "seed": "مداد",
+    "letters": [
+      "م",
+      "د",
+      "ا",
+      "د"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "داد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مدد",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مداد",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 5,
+    "max_score": 5.25
+  },
+  {
+    "id": 30,
+    "seed": "مکان",
+    "letters": [
+      "م",
+      "ک",
+      "ا",
+      "ن"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "امن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "کام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "کما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "مکان",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "کمان",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 7,
+    "max_score": 7.5
+  },
+  {
+    "id": 31,
+    "seed": "نگاه",
+    "letters": [
+      "ن",
+      "گ",
+      "ا",
+      "ه"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "انگ",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "هنگ",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "گاه",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ناگه",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نگاه",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "گناه",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.75
+  },
+  {
+    "id": 32,
+    "seed": "نماد",
+    "letters": [
+      "ن",
+      "م",
+      "ا",
+      "د"
+    ],
+    "difficulty": "medium",
+    "words": [
+      {
+        "word": "امن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نام",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ندا",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نما",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "دامن",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نادم",
+        "length": 4,
+        "weight": 1.25
+      },
+      {
+        "word": "نماد",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 9,
+    "max_score": 9.75
+  },
+  {
+    "id": 33,
+    "seed": "نوروز",
+    "letters": [
+      "ن",
+      "و",
+      "ر",
+      "و",
+      "ز"
+    ],
+    "difficulty": "easy",
+    "words": [
+      {
+        "word": "روز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "زور",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "نور",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "ورز",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "وزن",
+        "length": 3,
+        "weight": 1
+      },
+      {
+        "word": "روزن",
+        "length": 4,
+        "weight": 1.25
+      }
+    ],
+    "total_words": 6,
+    "max_score": 6.25
+  }
+]
