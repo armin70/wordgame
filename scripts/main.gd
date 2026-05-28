@@ -1,5 +1,5 @@
 # main.gd
-extends Control
+extends CanvasLayer
 
 var time_left = 15.0
 var game_finished = false
