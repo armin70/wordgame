@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="word_game"
 run/main_scene="uid://di52cp1yfwlvt"
-config/features=PackedStringArray("4.6", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -28,8 +28,6 @@ SocketManager="*res://scripts/SocketManager.gd"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/size/window_width_override=480
-window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"

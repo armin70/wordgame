@@ -7,7 +7,6 @@ var turn_active = false # کنترل حرکت تایمر
 
 func _ready():
 	$UIRoot/SubmitButton.pressed.connect(_on_submit_pressed)
-	$UIRoot/ClearButton.pressed.connect(_on_clear_pressed)
 	$EndGamePopup/RestartButton.pressed.connect(_on_restart_pressed)
 	
 func _process(delta):

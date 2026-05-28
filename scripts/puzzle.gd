@@ -1,10 +1,12 @@
-extends CanvasLayer
+extends Control
 
 var letters = []
 var valid_words = []
 var found_words = []
 var word_owners = {}
-
+var player_hp := 10
+var bot_hp := 10
+var max_hp := 10
 var current_word = ""
 var score = 0
 var bot_score = 0
@@ -58,7 +60,7 @@ var letter_textures = {
 # =========================
 # UI
 # =========================
-
+var input_enabled := true
 @onready var letters_container = $LettersContainer
 
 @onready var letter_buttons = [
@@ -68,11 +70,16 @@ var letter_textures = {
 	$LettersContainer/Letter4,
 	$LettersContainer/Letter5
 ]
-@onready var score_label: Label = $"../UIRoot/ScoreLabel"
+@onready var player_hp_label : Label = $"../UIRoot/PlayerHP"
+@onready var bot_hp_label : Label = $"../UIRoot/BotHP"
 
+@onready var score_label = $"../UIRoot/ScoreLabel"
 @onready var feedback_label = $"../UIRoot/FeedbackLabel"
 @onready var found_count_label = $"../UIRoot/FoundCountLabel"
+@onready var found_words_container = $"../UIRoot/FoundWords"
 @onready var current_word_label = $"../UIRoot/CurrentWordLabel"
+@onready var bot_score_label = $"../UIRoot/BotScoreLabel"
+@onready var bot_status_label = $"../UIRoot/BotStatusLabel"
 
 func _ready():
 
@@ -98,28 +105,87 @@ func _ready():
 # =========================
 # START PUZZLE
 # =========================
-
 func start_puzzle(data: Dictionary):
-
 	letters = data["letters"]
-
-	valid_words.clear()
-
+	valid_words = []
+	player_hp = max_hp
+	bot_hp = max_hp
+	update_hp_ui()
+	# استخراج کلمات و وزن‌ها از ساختار جدید
 	for w in data["words"]:
-		valid_words.append(w["word"])
+		var word_str = w["word"]
+		var weight_val = w.get("weight", 1) # اگر وزن نداشت پیش‌فرض ۱
+		
+		valid_words.append(word_str)
 
+	# ریست کردن وضعیت بازی
 	found_words.clear()
-
+	word_owners.clear()
 	score = 0
+	bot_score = 0
 	current_word = ""
+	selecting = false
+	game_finished = false
+	_clear_all_selections()
 
+	# آپدیت UI
 	score_label.text = "امتیاز: 0"
 	feedback_label.text = ""
-	found_count_label.text = "0 / " + str(valid_words.size())
+	#found_count_label.text = "0 / " + str(valid_words.size())
 	current_word_label.text = ""
+	bot_score_label.text = "Bot: 0"
+	bot_status_label.text = ""
+
+	_clear_found_words_ui()
+	set_buttons_enabled(true)
+	
+	#start_bot() 
 
 	_generate_letter_buttons()
+	_start_player_turn()
+	
+func apply_word_effect(word: String, owner: String):
+	var l = word.length()
 
+	# اگر 4 حرفی بود → heal برای خود بازیکن
+	if l == 4:
+		if owner == "player":
+			player_hp = min(max_hp, player_hp + 4)
+		else:
+			bot_hp = min(max_hp, bot_hp + 4)
+
+	# بقیه حالت‌ها → damage به حریف
+	else:
+		if owner == "player":
+			bot_hp -= l
+		else:
+			player_hp -= l
+
+	update_hp_ui()
+	check_game_over()
+
+func check_game_over():
+	if player_hp <= 0:
+		game_finished = true
+		set_buttons_enabled(false)
+		feedback_label.text = "💀 باختی!"
+
+	elif bot_hp <= 0:
+		game_finished = true
+		set_buttons_enabled(false)
+		feedback_label.text = "🏆 بردی!"
+func update_hp_ui():
+	player_hp_label.text = "HP شما: " + str(player_hp)
+	bot_hp_label.text = "HP ربات: " + str(bot_hp)
+func _start_player_turn():
+	if game_finished: return
+	
+	current_turn = "player"
+	set_buttons_enabled(true)
+	bot_status_label.text = "نوبت شماست"
+	
+	# فعال کردن و ریست تایمر در اسکریپت اصلی
+	get_parent().reset_timer()
 # =========================
 # GENERATE BUTTONS
 # =========================
@@ -148,7 +214,7 @@ func _generate_letter_buttons():
 
 func _on_button_gui_input(event: InputEvent, button) -> void:
 
-	if game_finished:
+	if game_finished or not input_enabled:
 		return
 
 	if event is InputEventMouseButton \
@@ -203,7 +269,8 @@ func _input(event):
 			_finish_swipe()
 
 func _process_swipe_position(pos: Vector2) -> void:
-
+	if not input_enabled:
+		return
 	for button in letter_buttons:
 
 		if button.visible and not button.disabled:
@@ -273,32 +340,151 @@ func submit_current_word():
 
 		score_label.text = "امتیاز: " + str(score)
 
-		found_count_label.text = str(found_words.size()) \
-		+ " / " + str(valid_words.size())
-
+		#found_count_label.text = str(found_words.size()) \
+		#+ " / " + str(valid_words.size())
+		
 		feedback_label.text = "✅ درست"
-
+		apply_word_effect(current_word, "player")
+		add_found_word(current_word,'player')
+		turn_over()
 	else:
 
 		feedback_label.text = "❌ غلط"
 
 	_clear_all_selections()
+func _start_bot_turn():
+	if game_finished or current_turn == "bot": return
+	
+	current_turn = "bot"
+	set_buttons_enabled(false)
+	get_parent().stop_timer() # مطمئن شویم تایمر بازیکن کاملاً متوقف است
+	
+	await perform_bot_move()
+	
+	# پس از پایان کاملِ حرکت ربات، نوبت به بازیکن داده می‌شود
+	if not game_finished:
+		_start_player_turn()
+func perform_bot_move():
+	bot_status_label.text = "ربات در حال فکر کردن..."
+	var bot_found = false
+	
+	while not bot_found:
+		var available_words = []
+		for w in valid_words:
+			if w not in found_words:
+				available_words.append(w)
+		
+		if available_words.size() == 0:
+			bot_status_label.text = "کلمه‌ای نمانده!"
+			await get_tree().create_timer(1.5).timeout
+			break
+		
+		var thinking_time = randf_range(1.5, 2.5)
+		await get_tree().create_timer(thinking_time).timeout
+		
+		if randf() > 0.3:
+			var chosen = available_words.pick_random()
+			found_words.append(chosen)
+			word_owners[chosen] = "bot"
+			
+			add_found_word(chosen, "bot")
+			update_score()
+			update_bot_score()
+			apply_word_effect(chosen, "bot")
+			#update_found_count()
+			feedback_label.text = "ربات کلمه '" + chosen + "' را پیدا کرد."
+			
+			await get_tree().create_timer(1.5).timeout
+			bot_found = true 
+		else:
+			feedback_label.text = "ربات به بن‌بست رسید، دوباره بررسی می‌کند..."
+			await get_tree().create_timer(1.2).timeout
+	
+	bot_status_label.text = ""
+	# نکته مهم: اینجا دیگر هیچ تابعی را برای تغییر نوبت صدا نزنید.
+	# مدیریت نوبت به صورت زنجیره‌ای در تابعِ فرستنده (_start_bot_turn) انجام می‌شود.
+
+func add_found_word(word, owner):
+	var label = Label.new()
+
+	if owner == "player":
+		label.text = "🟢 " + word
+	else:
+		label.text = "🔴 " + word
+
+	found_words_container.add_child(label)
+
+func _clear_found_words_ui():
+	for child in found_words_container.get_children():
+		child.queue_free()
+
+func update_score():
+	score_label.text = "امتیاز: " + str(score)
+
+func update_bot_score():
+	bot_score_label.text = "Bot: " + str(bot_score)
+
+#func update_found_count():
+	#found_count_label.text = str(found_words.size()) + " / " + str(valid_words.size())
+
+func set_buttons_enabled(enabled):
+	input_enabled = enabled
+
+	for button in letters_container.get_children():
+		if button is Button:
+			button.modulate = Color(1,1,1,1) if enabled else Color(0.5,0.5,0.5,1)
+
+#func check_game_complete():
+	#if game_finished:
+		#return
+#
+	#if found_words.size() >= valid_words.size():
+		#game_finished = true
+		#set_buttons_enabled(false)
+	
+
+func turn_over():
+	if current_turn == "player":
+		print("Player time limit reached. Switching to bot...")
+		_start_bot_turn()
+		
+func _reset_puzzle():
+	var new_puzzle = SocketManager.get_offline_test_puzzle()
+	var try_count=0
+	while new_puzzle.id in prev_puzzles:
+		try_count += 1
+		new_puzzle = SocketManager.get_offline_test_puzzle()
+		if try_count > 10:
+			break
+	prev_puzzles.append(new_puzzle.id)
+	letters = new_puzzle["letters"]
+	valid_words = []
+
+	# استخراج کلمات و وزن‌ها از ساختار جدید
+	for w in new_puzzle["words"]:
+		var word_str = w["word"]
+		var weight_val = w.get("weight", 1) # اگر وزن نداشت پیش‌فرض ۱
+		
+		valid_words.append(word_str)
+	_generate_letter_buttons()
+
+
 
 # =========================
 # BUTTONS
 # =========================
 
-func _on_submit_button_pressed() -> void:
 
+func _on_submit_button_pressed() -> void:
 	if current_word != "":
 		submit_current_word()
+	else:
+		pass
+
 
 func _on_clear_button_pressed() -> void:
-
 	_clear_all_selections()
 
+
 func _on_reset_puzzle_pressed() -> void:
-
-	var new_puzzle = SocketManager.get_offline_test_puzzle()
-
-	start_puzzle(new_puzzle)
+	_reset_puzzle()
