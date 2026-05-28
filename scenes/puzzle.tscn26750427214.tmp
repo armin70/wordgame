@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvcohcdrbdnpi"]
+
+[ext_resource type="Script" uid="uid://x7mfbnrnfbym" path="res://scripts/puzzle.gd" id="1_64ty3"]
+[ext_resource type="Texture2D" uid="uid://bhr03ggjdj6c6" path="res://extras/سینی.png" id="2_4opeh"]
+[ext_resource type="Texture2D" uid="uid://d8q6fx2u158i" path="res://assets/alphabet/الف.png" id="3_5ifmx"]
+[ext_resource type="Texture2D" uid="uid://xbwbpe7sb8uu" path="res://assets/alphabet/ر.png" id="4_3asjn"]
+
+[node name="Puzzle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_64ty3")
+
+[node name="LettersContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 423.0
+offset_right = 26.0
+offset_bottom = 423.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TrayBackground" type="TextureRect" parent="LettersContainer"]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 324.0
+offset_right = 598.0
+offset_bottom = 771.0
+texture = ExtResource("2_4opeh")
+expand_mode = 2
+
+[node name="Letter1" type="TextureButton" parent="LettersContainer"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 375.0
+offset_right = 425.0
+offset_bottom = 485.0
+scale = Vector2(0.74469316, 0.74469316)
+texture_normal = ExtResource("3_5ifmx")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Letter2" type="TextureButton" parent="LettersContainer"]
+layout_mode = 0
+offset_left = 136.00003
+offset_top = 481.0
+offset_right = 274.00003
+offset_bottom = 591.0
+scale = Vector2(0.74469316, 0.74469316)
+texture_normal = ExtResource("3_5ifmx")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Letter3" type="TextureButton" parent="LettersContainer"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 642.0
+offset_right = 325.0
+offset_bottom = 752.0
+scale = Vector2(0.74469316, 0.74469316)
+texture_normal = ExtResource("3_5ifmx")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Letter4" type="TextureButton" parent="LettersContainer"]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 645.0
+offset_right = 516.0
+offset_bottom = 755.0
+scale = Vector2(0.74469316, 0.74469316)
+texture_normal = ExtResource("3_5ifmx")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Letter5" type="TextureButton" parent="LettersContainer"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 481.0
+offset_right = 574.0
+offset_bottom = 591.0
+scale = Vector2(0.74469316, 0.74469316)
+texture_normal = ExtResource("4_3asjn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="DragLine" type="Line2D" parent="."]
+z_index = 100

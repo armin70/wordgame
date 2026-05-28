@@ -1,7 +1,7 @@
 # main.gd
 extends CanvasLayer
 
-var time_left = 15.0
+var time_left = 20.0
 var game_finished = false
 var turn_active = false # کنترل حرکت تایمر
 
@@ -16,12 +16,12 @@ func _process(delta):
 	# تایمر فقط زمانی کم می‌شود که نوبت فعالِ بازیکن باشد
 	if $Puzzle.current_turn == "player":
 		time_left -= delta
-		$UIRoot/TimerLabel.text = "زمان: " + str(int(ceil(time_left)))
+		$UIRoot/TimerLabel.text =  str(int(ceil(time_left)))
 
 		if time_left <= 0:
 			turn_active = false # توقف تایمر
 			time_left = 0
-			$UIRoot/TimerLabel.text = "زمان تمام!"
+			#$UIRoot/TimerLabel.text = "زمان تمام!"
 			$Puzzle.turn_over() # انتقال نوبت به ربات
 
 func reset_timer():
@@ -47,5 +47,5 @@ func restart_game():
 	game_finished = false
 	time_left = 15.0
 	turn_active = false
-	$UIRoot/TimerLabel.text = "زمان: 15"
+	$UIRoot/TimerLabel.text = "15"
 	# بقیه دستورات ریست بازی...

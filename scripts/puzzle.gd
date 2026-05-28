@@ -4,9 +4,9 @@ var letters = []
 var valid_words = []
 var found_words = []
 var word_owners = {}
-var player_hp := 10
-var bot_hp := 10
-var max_hp := 10
+var player_hp := 15
+var bot_hp := 15
+var max_hp := 15
 var current_word = ""
 var score = 0
 var bot_score = 0
@@ -15,9 +15,9 @@ var selected_buttons: Array = []
 var selecting := false
 var game_finished := false
 var current_turn := ""
-
 var prev_puzzles = []
-
+var drag_curve: Curve2D = Curve2D.new()
+var last_drag_pos: Vector2 = Vector2.ZERO
 # =========================
 # Letter Textures
 # =========================
@@ -80,9 +80,10 @@ var input_enabled := true
 @onready var current_word_label = $"../UIRoot/CurrentWordLabel"
 @onready var bot_score_label = $"../UIRoot/BotScoreLabel"
 @onready var bot_status_label = $"../UIRoot/BotStatusLabel"
-
+@onready var drag_line: Line2D = $DragLine
 func _ready():
-
+	drag_curve.set_bake_interval(1.0)
+	drag_curve.set_bake_interval(0.5)
 	SocketManager.puzzle_received.connect(start_puzzle)
 
 	if SocketManager.use_offline_puzzle:
@@ -220,9 +221,10 @@ func _on_button_gui_input(event: InputEvent, button) -> void:
 	if event is InputEventMouseButton \
 	and event.pressed \
 	and event.button_index == MOUSE_BUTTON_LEFT:
-
+		drag_curve.clear_points()
+		last_drag_pos = Vector2.ZERO
 		selecting = true
-
+		drag_line.clear_points()
 		_clear_all_selections()
 
 		_add_to_selected(button)
@@ -271,20 +273,48 @@ func _input(event):
 func _process_swipe_position(pos: Vector2) -> void:
 	if not input_enabled:
 		return
+	if last_drag_pos == Vector2.ZERO:
+		last_drag_pos = pos
+
+	var dist = last_drag_pos.distance_to(pos)
+
+	if dist > 4:
+		var steps = int(dist / 4)
+
+		for i in range(steps):
+			var t = float(i) / float(max(steps, 1))
+			_add_drag_point(last_drag_pos.lerp(pos, t))
+
+		last_drag_pos = pos
+
+	_add_drag_point(pos)
+	# همیشه خط آپدیت شود
+	_update_drag_preview(pos)
+
 	for button in letter_buttons:
-
 		if button.visible and not button.disabled:
-
 			var rect = button.get_global_rect()
 
 			if rect.has_point(pos):
-
 				if button not in selected_buttons:
-
 					_add_to_selected(button)
-
 				return
+func _update_drag_preview(pos: Vector2):
 
+	if selected_buttons.size() == 0:
+		return
+
+	drag_line.clear_points()
+
+	for btn in selected_buttons:
+
+		var center = btn.global_position + (btn.size / 2)
+		center = drag_line.to_local(center)
+
+		drag_line.add_point(center)
+
+	# نقطه آخر = موس / انگشت
+	drag_line.add_point(drag_line.to_local(pos))
 # =========================
 # SELECT
 # =========================
@@ -296,7 +326,48 @@ func _add_to_selected(button):
 	button.modulate = Color(0.7, 1, 0.7)
 
 	_update_current_word_from_selection()
+	#_update_drag_line()
 
+func _add_drag_point(pos: Vector2):
+	var local = pos - drag_line.global_position
+	drag_curve.add_point(local)
+
+	var i = drag_curve.get_point_count() - 1
+
+	if i > 0:
+		var prev = drag_curve.get_point_position(i - 1)
+		var dir = (local - prev) * 0.5
+
+		drag_curve.set_point_in(i, -dir)
+		drag_curve.set_point_out(i, dir)
+	if drag_curve.get_point_count() > 0:
+		var last = drag_curve.get_point_position(drag_curve.get_point_count() - 1)
+		if last.distance_to(local) < 2:
+			return
+
+	drag_curve.add_point(local)
+	_redraw_line()
+
+func _redraw_line():
+	drag_line.clear_points()
+
+	var baked = drag_curve.get_baked_points()
+
+	for p in baked:
+		drag_line.add_point(p)
+#func _update_drag_line():
+#
+	#drag_line.clear_points()
+#
+	#for btn in selected_buttons:
+#
+		#var center = btn.global_position + (btn.size / 2)
+#
+		## تبدیل global به local برای Line2D
+		#center = drag_line.to_local(center)
+#
+		#drag_line.add_point(center)
+		#
 func _update_current_word_from_selection():
 
 	current_word = ""
@@ -322,7 +393,9 @@ func _clear_all_selections():
 	current_word_label.text = ""
 
 func _finish_swipe():
-
+	drag_curve.clear_points()
+	drag_line.clear_points()
+	last_drag_pos = Vector2.ZERO
 	_update_current_word_from_selection()
 
 # =========================
