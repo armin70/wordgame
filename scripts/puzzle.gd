@@ -4,9 +4,9 @@ var letters = []
 var valid_words = []
 var found_words = []
 var word_owners = {}
-var player_hp := 15
-var bot_hp := 15
-var max_hp := 15
+var player_hp := 20
+var bot_hp := 20
+var max_hp := 20
 var current_word = ""
 var score = 0
 var bot_score = 0
@@ -85,7 +85,11 @@ func _ready():
 	drag_curve.set_bake_interval(1.0)
 	drag_curve.set_bake_interval(0.5)
 	SocketManager.puzzle_received.connect(start_puzzle)
+	$"../UIRoot/PlayerHPBar".max_value = max_hp
+	$"../UIRoot/BotHpBar".max_value = max_hp
 
+	$"../UIRoot/PlayerHP".text = str(player_hp)
+	$"../UIRoot/BotHP".text = str(bot_hp)
 	if SocketManager.use_offline_puzzle:
 
 		await get_tree().process_frame
@@ -148,26 +152,39 @@ func start_puzzle(data: Dictionary):
 func apply_word_effect(word: String, owner: String):
 	var l = word.length()
 
+	# HEAL
 	if l == 4:
 		if owner == "player":
 			player_hp = min(max_hp, player_hp + 4)
-			update_hp_ui()
-			flash_hp(player_hp_label, Color(0.2, 1, 0.2)) # سبز
+
+			var bar = $"../UIRoot/PlayerHPBar"
+			bar.modulate = Color(0.4, 1, 0.4)
+			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
+
 		else:
 			bot_hp = min(max_hp, bot_hp + 4)
-			update_hp_ui()
-			flash_hp(bot_hp_label, Color(0.2, 1, 0.2))
 
+			var bar = $"../UIRoot/BotHpBar"
+			bar.modulate = Color(0.4, 1, 0.4)
+			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
+
+	# DAMAGE
 	else:
 		if owner == "player":
 			bot_hp -= l
-			update_hp_ui()
-			flash_hp(bot_hp_label, Color(1, 0.2, 0.2)) # قرمز
+
+			var bar = $"../UIRoot/BotHpBar"
+			bar.modulate = Color(1, 0.3, 0.3)
+			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
+
 		else:
 			player_hp -= l
-			update_hp_ui()
-			flash_hp(player_hp_label, Color(1, 0.2, 0.2))
 
+			var bar = $"../UIRoot/PlayerHPBar"
+			bar.modulate = Color(1, 0.3, 0.3)
+			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
+
+	update_hp_ui()
 	check_game_over()
 func check_game_over():
 	if player_hp <= 0:
@@ -180,8 +197,11 @@ func check_game_over():
 		set_buttons_enabled(false)
 		feedback_label.text = "🏆 بردی!"
 func update_hp_ui():
-	player_hp_label.text = "HP" + str(player_hp)
-	bot_hp_label.text = "HP" + str(bot_hp)
+	player_hp_label.text = "HP " + str(player_hp)
+	bot_hp_label.text = "HP " + str(bot_hp)
+
+	create_tween().tween_property($"../UIRoot/PlayerHPBar", "value", player_hp, 0.3)
+	create_tween().tween_property($"../UIRoot/BotHpBar", "value", bot_hp, 0.3)
 func _start_player_turn():
 	if game_finished: return
 	

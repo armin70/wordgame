@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://bvcohcdrbdnpi"]
+[gd_scene load_steps=4 format=3 uid="uid://bvcohcdrbdnpi"]
 
 [ext_resource type="Script" uid="uid://x7mfbnrnfbym" path="res://scripts/puzzle.gd" id="1_64ty3"]
 [ext_resource type="Texture2D" uid="uid://d8q6fx2u158i" path="res://assets/alphabet/الف.png" id="3_5ifmx"]
 [ext_resource type="Texture2D" uid="uid://xbwbpe7sb8uu" path="res://assets/alphabet/ر.png" id="4_3asjn"]
 
-[node name="Puzzle" type="Control" unique_id=1020299485]
+[node name="Puzzle" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_64ty3")
 
-[node name="LettersContainer" type="Control" parent="." unique_id=1901702592]
+[node name="LettersContainer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ offset_bottom = 423.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Letter1" type="TextureButton" parent="LettersContainer" unique_id=1746381928]
+[node name="Letter1" type="TextureButton" parent="LettersContainer"]
 layout_mode = 0
 offset_left = 287.0
 offset_top = 302.0
@@ -32,7 +32,7 @@ texture_normal = ExtResource("3_5ifmx")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter2" type="TextureButton" parent="LettersContainer" unique_id=1274222610]
+[node name="Letter2" type="TextureButton" parent="LettersContainer"]
 layout_mode = 0
 offset_left = 124.99997
 offset_top = 431.0
@@ -43,7 +43,7 @@ texture_normal = ExtResource("3_5ifmx")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter3" type="TextureButton" parent="LettersContainer" unique_id=82259206]
+[node name="Letter3" type="TextureButton" parent="LettersContainer"]
 layout_mode = 0
 offset_left = 178.99997
 offset_top = 604.0
@@ -54,29 +54,29 @@ texture_normal = ExtResource("3_5ifmx")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter4" type="TextureButton" parent="LettersContainer" unique_id=1983004137]
+[node name="Letter4" type="TextureButton" parent="LettersContainer"]
 layout_mode = 0
-offset_left = 407.0
-offset_top = 607.0
-offset_right = 545.0
-offset_bottom = 717.0
+offset_left = 389.0
+offset_top = 596.0
+offset_right = 527.0
+offset_bottom = 706.0
 scale = Vector2(0.74469316, 0.74469316)
 texture_normal = ExtResource("3_5ifmx")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter5" type="TextureButton" parent="LettersContainer" unique_id=1294373488]
+[node name="Letter5" type="TextureButton" parent="LettersContainer"]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 400.0
-offset_right = 578.0
-offset_bottom = 510.0
+offset_left = 445.0
+offset_top = 415.0
+offset_right = 583.0
+offset_bottom = 525.0
 scale = Vector2(0.74469316, 0.74469316)
 texture_normal = ExtResource("4_3asjn")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="DragLine" type="Line2D" parent="." unique_id=158662237]
+[node name="DragLine" type="Line2D" parent="."]
 z_index = 100
 joint_mode = 2
 begin_cap_mode = 2

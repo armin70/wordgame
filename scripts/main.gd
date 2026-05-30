@@ -27,7 +27,7 @@ func _process(delta):
 		
 func reset_timer():
 	print("Timer Reset")
-	time_left = 15.0
+	time_left = 20.0
 	turn_active = true # فعال شدن تایمر برای نوبت بازیکن
 
 func stop_timer():
@@ -46,7 +46,7 @@ func _on_restart_pressed():
 
 func restart_game():
 	game_finished = false
-	time_left = 15.0
+	time_left = 20.0
 	turn_active = false
-	$UIRoot/TimerLabel.text = "15"
+	$UIRoot/TimerLabel.text = "20"
 	# بقیه دستورات ریست بازی...
