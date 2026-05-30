@@ -4,9 +4,9 @@ var letters = []
 var valid_words = []
 var found_words = []
 var word_owners = {}
-var player_hp := 20
-var bot_hp := 20
-var max_hp := 20
+var player_hp := 40
+var bot_hp := 40
+var max_hp := 40
 var current_word = ""
 var score = 0
 var bot_score = 0
@@ -155,7 +155,7 @@ func apply_word_effect(word: String, owner: String):
 	# HEAL
 	if l == 4:
 		if owner == "player":
-			player_hp = min(max_hp, player_hp + 4)
+			player_hp = min(max_hp, player_hp + 7)
 
 			var bar = $"../UIRoot/PlayerHPBar"
 			bar.modulate = Color(0.4, 1, 0.4)
@@ -171,14 +171,14 @@ func apply_word_effect(word: String, owner: String):
 	# DAMAGE
 	else:
 		if owner == "player":
-			bot_hp -= l
+			bot_hp -= 2 * l
 
 			var bar = $"../UIRoot/BotHpBar"
 			bar.modulate = Color(1, 0.3, 0.3)
 			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 
 		else:
-			player_hp -= l
+			player_hp -= 2 * l
 
 			var bar = $"../UIRoot/PlayerHPBar"
 			bar.modulate = Color(1, 0.3, 0.3)
