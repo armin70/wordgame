@@ -148,23 +148,27 @@ func start_puzzle(data: Dictionary):
 func apply_word_effect(word: String, owner: String):
 	var l = word.length()
 
-	# اگر 4 حرفی بود → heal برای خود بازیکن
 	if l == 4:
 		if owner == "player":
 			player_hp = min(max_hp, player_hp + 4)
+			update_hp_ui()
+			flash_hp(player_hp_label, Color(0.2, 1, 0.2)) # سبز
 		else:
 			bot_hp = min(max_hp, bot_hp + 4)
+			update_hp_ui()
+			flash_hp(bot_hp_label, Color(0.2, 1, 0.2))
 
-	# بقیه حالت‌ها → damage به حریف
 	else:
 		if owner == "player":
 			bot_hp -= l
+			update_hp_ui()
+			flash_hp(bot_hp_label, Color(1, 0.2, 0.2)) # قرمز
 		else:
 			player_hp -= l
+			update_hp_ui()
+			flash_hp(player_hp_label, Color(1, 0.2, 0.2))
 
-	update_hp_ui()
 	check_game_over()
-
 func check_game_over():
 	if player_hp <= 0:
 		game_finished = true
@@ -176,8 +180,8 @@ func check_game_over():
 		set_buttons_enabled(false)
 		feedback_label.text = "🏆 بردی!"
 func update_hp_ui():
-	player_hp_label.text = "HP شما: " + str(player_hp)
-	bot_hp_label.text = "HP ربات: " + str(bot_hp)
+	player_hp_label.text = "HP" + str(player_hp)
+	bot_hp_label.text = "HP" + str(bot_hp)
 func _start_player_turn():
 	if game_finished: return
 	
@@ -563,3 +567,25 @@ func _on_clear_button_pressed() -> void:
 
 func _on_reset_puzzle_pressed() -> void:
 	_reset_puzzle()
+
+
+func _on_shuffle_pressed() -> void:
+	letters.shuffle()
+
+	for btn in letter_buttons:
+		btn.modulate.a = 0.3
+
+	await get_tree().create_timer(0.1).timeout
+
+	_generate_letter_buttons()
+
+	for btn in letter_buttons:
+		btn.modulate.a = 1.0
+		
+func flash_hp(label: Label, color: Color) -> void:
+	var original = label.modulate
+	label.modulate = color
+	
+	await get_tree().create_timer(1).timeout
+	
+	label.modulate = original

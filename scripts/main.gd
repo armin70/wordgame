@@ -6,6 +6,8 @@ var game_finished = false
 var turn_active = false # کنترل حرکت تایمر
 
 func _ready():
+	$UIRoot/TimerBar.max_value = time_left
+	$UIRoot/TimerBar.value = time_left
 	$UIRoot/SubmitButton.pressed.connect(_on_submit_pressed)
 	$EndGamePopup/RestartButton.pressed.connect(_on_restart_pressed)
 	
@@ -13,17 +15,16 @@ func _process(delta):
 	if game_finished or not turn_active:
 		return
 
-	# تایمر فقط زمانی کم می‌شود که نوبت فعالِ بازیکن باشد
-	if $Puzzle.current_turn == "player":
-		time_left -= delta
-		$UIRoot/TimerLabel.text =  str(int(ceil(time_left)))
+	time_left -= delta
 
-		if time_left <= 0:
-			turn_active = false # توقف تایمر
-			time_left = 0
-			#$UIRoot/TimerLabel.text = "زمان تمام!"
-			$Puzzle.turn_over() # انتقال نوبت به ربات
+	$UIRoot/TimerLabel.text = str(int(ceil(time_left)))
+	$UIRoot/TimerBar.value = time_left
 
+	if time_left <= 0:
+		turn_active = false
+		time_left = 0
+		$Puzzle.turn_over()
+		
 func reset_timer():
 	print("Timer Reset")
 	time_left = 15.0

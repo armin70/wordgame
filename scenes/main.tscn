@@ -1,13 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://di52cp1yfwlvt"]
+[gd_scene format=3 uid="uid://di52cp1yfwlvt"]
 
 [ext_resource type="PackedScene" uid="uid://bvcohcdrbdnpi" path="res://scenes/puzzle.tscn" id="1_0wfyh"]
 [ext_resource type="FontFile" uid="uid://btclmw74tt5gn" path="res://assets/fonts/Vazirmatn-Medium.ttf" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://fwtwrcpkrej7" path="res://scripts/main.gd" id="1_sugp2"]
-[ext_resource type="Texture2D" uid="uid://c1v1rm34b80gw" path="res://extras/کادر کلمات.png" id="3_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dw51aahm1ld13" path="res://extras/noir theme.png" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://c7i38qkod7com" path="res://extras/حدس کلمه کادر.png" id="4_85g3d"]
-[ext_resource type="Texture2D" uid="uid://ce81a8d58bg1d" path="res://extras/submit.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://cml2b4cbk67tv" path="res://extras/change.png" id="5_tefeu"]
 [ext_resource type="Texture2D" uid="uid://cki8lxwt3hai4" path="res://extras/timer.png" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://bviw2wg4311pk" path="res://extras/man.png" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://b2gfeh3iamkrs" path="res://extras/robot.png" id="8_choun"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8y0u"]
 texture = ExtResource("4_85g3d")
@@ -51,41 +52,37 @@ expand_margin_bottom = 5.0
 [sub_resource type="LabelSettings" id="LabelSettings_sugp2"]
 font = ExtResource("1_o5qli")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tefeu"]
-texture = ExtResource("4_tbgi4")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o6xl0"]
-texture = ExtResource("4_tbgi4")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tipki"]
-texture = ExtResource("4_tbgi4")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eb6dy"]
 texture = ExtResource("6_tipki")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o6xl0"]
+texture = ExtResource("5_tefeu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tipki"]
+texture = ExtResource("5_tefeu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_85g3d"]
 texture = ExtResource("5_tefeu")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choun"]
-texture = ExtResource("5_tefeu")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ya4ey"]
-texture = ExtResource("5_tefeu")
-
-[node name="main" type="CanvasLayer"]
+[node name="main" type="CanvasLayer" unique_id=358174341]
 script = ExtResource("1_sugp2")
 
-[node name="EndGamePopup" type="AcceptDialog" parent="."]
+[node name="NoirTheme" type="Sprite2D" parent="." unique_id=2033313474]
+position = Vector2(364, 641.5)
+scale = Vector2(0.57971007, 0.5774456)
+texture = ExtResource("2_tipki")
+
+[node name="EndGamePopup" type="AcceptDialog" parent="." unique_id=57263926]
 oversampling_override = 1.0
 dialog_text = "پایان بازی"
 
-[node name="RestartButton" type="Button" parent="EndGamePopup"]
+[node name="RestartButton" type="Button" parent="EndGamePopup" unique_id=591825200]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 92.0
 offset_bottom = 51.0
 
-[node name="UIRoot" type="Control" parent="."]
+[node name="UIRoot" type="Control" parent="." unique_id=976822243]
 layout_direction = 2
 layout_mode = 3
 anchors_preset = 15
@@ -94,31 +91,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="UIRoot"]
+[node name="TimerBar" type="ProgressBar" parent="UIRoot" unique_id=1584256580]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 446.0
-offset_right = 710.0
-offset_bottom = 646.0
-texture = ExtResource("3_o6xl0")
-expand_mode = 2
-stretch_mode = 5
+offset_left = 178.0
+offset_top = 623.0
+offset_right = 613.0
+offset_bottom = 663.0
+show_percentage = false
 
-[node name="FoundWords" type="HFlowContainer" parent="UIRoot"]
+[node name="FoundWords" type="HFlowContainer" parent="UIRoot" unique_id=861440977]
 layout_direction = 3
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.148
-anchor_top = 0.361
-anchor_right = 0.872
-anchor_bottom = 0.372
+anchor_left = 0.15238911
+anchor_top = 0.03359375
+anchor_right = 0.8763891
+anchor_bottom = 0.044593763
 offset_left = -0.00018310547
 offset_right = -0.00012207031
 offset_bottom = 150.0
 grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrentWordLabel" type="Label" parent="UIRoot"]
+[node name="CurrentWordLabel" type="Label" parent="UIRoot" unique_id=1393731151]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.94722223
@@ -137,7 +132,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="FeedbackLabel" type="Label" parent="UIRoot"]
+[node name="FeedbackLabel" type="Label" parent="UIRoot" unique_id=1996959036]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.2666667
@@ -151,7 +146,7 @@ offset_bottom = 253.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_jkv2x")
 metadata/_edit_use_anchors_ = true
 
-[node name="BotStatusLabel" type="Label" parent="UIRoot"]
+[node name="BotStatusLabel" type="Label" parent="UIRoot" unique_id=420763812]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -166,7 +161,7 @@ offset_bottom = 228.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_muem4")
 metadata/_edit_use_anchors_ = true
 
-[node name="BotScoreLabel" type="Label" parent="UIRoot"]
+[node name="BotScoreLabel" type="Label" parent="UIRoot" unique_id=830087735]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -182,7 +177,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_dp3eg")
 text = "bot : 0"
 metadata/_edit_use_anchors_ = true
 
-[node name="ScoreLabel" type="Label" parent="UIRoot"]
+[node name="ScoreLabel" type="Label" parent="UIRoot" unique_id=696531153]
 visible = false
 layout_direction = 3
 layout_mode = 1
@@ -204,7 +199,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_sugp2")
 metadata/_edit_use_anchors_ = true
 
-[node name="SubmitButton" type="Button" parent="UIRoot"]
+[node name="SubmitButton" type="Button" parent="UIRoot" unique_id=1489685697]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.029166667
@@ -217,21 +212,17 @@ offset_right = 608.0
 offset_bottom = 1776.0
 scale = Vector2(1.9501774, 1.9501774)
 focus_mode = 0
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_tefeu")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_o6xl0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tipki")
+theme_override_font_sizes/font_size = 20
 action_mode = 0
-text = "
-"
+text = "ثبت"
 metadata/_edit_use_anchors_ = true
 
-[node name="TimerLabel" type="Label" parent="UIRoot"]
+[node name="TimerLabel" type="Label" parent="UIRoot" unique_id=1530487632]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 307.0
-offset_right = 104.0
-offset_bottom = 447.0
+offset_left = 114.0
+offset_top = 612.0
+offset_right = 174.0
+offset_bottom = 672.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 40
@@ -240,38 +231,59 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResetPuzzle" type="Button" parent="UIRoot"]
+[node name="ResetPuzzle" type="Button" parent="UIRoot" unique_id=787925822]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 1099.0
-offset_right = 150.0
-offset_bottom = 1199.0
+offset_left = 19.0
+offset_top = 1105.0
+offset_right = 124.0
+offset_bottom = 1205.0
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxTexture_85g3d")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_choun")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ya4ey")
 action_mode = 0
+text = "پازل جدید"
 
-[node name="PlayerHP" type="Label" parent="UIRoot"]
+[node name="PlayerHP" type="Label" parent="UIRoot" unique_id=1101268087]
 layout_mode = 0
-offset_left = 641.0
-offset_top = 764.0
-offset_right = 681.0
-offset_bottom = 787.0
+offset_left = 417.0
+offset_top = 431.0
+offset_right = 457.0
+offset_bottom = 454.0
+theme_override_font_sizes/font_size = 30
 
-[node name="BotHP" type="Label" parent="UIRoot"]
+[node name="BotHP" type="Label" parent="UIRoot" unique_id=939254454]
 layout_mode = 0
-offset_left = 657.0
-offset_top = 393.0
-offset_right = 697.0
-offset_bottom = 416.0
+offset_left = 278.0
+offset_top = 407.0
+offset_right = 318.0
+offset_bottom = 430.0
+theme_override_font_sizes/font_size = 30
 
-[node name="Puzzle" parent="." instance=ExtResource("1_0wfyh")]
+[node name="shuffle" type="Button" parent="UIRoot" unique_id=1664421677]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 730.0
+offset_right = 168.0
+offset_bottom = 830.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_o6xl0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tipki")
+theme_override_styles/hover = SubResource("StyleBoxTexture_85g3d")
+
+[node name="Man" type="Sprite2D" parent="UIRoot" unique_id=1241200565]
+position = Vector2(590, 423)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_85g3d")
+
+[node name="Robot" type="Sprite2D" parent="UIRoot" unique_id=550218442]
+position = Vector2(138, 422.00003)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_choun")
+
+[node name="Puzzle" parent="." unique_id=930254452 instance=ExtResource("1_0wfyh")]
 layout_direction = 3
-offset_left = -55.0
-offset_top = 25.0
-offset_right = -55.0
-offset_bottom = 25.0
+offset_left = -37.0
+offset_top = 40.0
+offset_right = -37.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="UIRoot/SubmitButton" to="Puzzle" method="_on_submit_button_pressed"]
 [connection signal="pressed" from="UIRoot/ResetPuzzle" to="Puzzle" method="_on_reset_puzzle_pressed"]
+[connection signal="pressed" from="UIRoot/shuffle" to="Puzzle" method="_on_shuffle_pressed"]
