@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvcohcdrbdnpi"]
 
 [ext_resource type="Script" uid="uid://x7mfbnrnfbym" path="res://scripts/puzzle.gd" id="1_64ty3"]
-[ext_resource type="Texture2D" uid="uid://bhr03ggjdj6c6" path="res://extras/سینی.png" id="2_4opeh"]
+[ext_resource type="Texture2D" uid="uid://dy4uoe75gpfd5" path="res://extras/sini.png" id="2_3asjn"]
 [ext_resource type="Texture2D" uid="uid://d8q6fx2u158i" path="res://assets/alphabet/الف.png" id="3_5ifmx"]
 [ext_resource type="Texture2D" uid="uid://xbwbpe7sb8uu" path="res://assets/alphabet/ر.png" id="4_3asjn"]
 
@@ -24,11 +24,11 @@ grow_vertical = 2
 
 [node name="TrayBackground" type="TextureRect" parent="LettersContainer"]
 layout_mode = 0
-offset_left = 151.0
-offset_top = 324.0
-offset_right = 598.0
-offset_bottom = 771.0
-texture = ExtResource("2_4opeh")
+offset_left = 147.0
+offset_top = 313.0
+offset_right = 594.0
+offset_bottom = 760.0
+texture = ExtResource("2_3asjn")
 expand_mode = 2
 
 [node name="Letter1" type="TextureButton" parent="LettersContainer"]

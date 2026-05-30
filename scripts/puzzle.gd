@@ -193,6 +193,8 @@ func _start_player_turn():
 
 func _generate_letter_buttons():
 
+	letters.shuffle()
+
 	for i in range(letter_buttons.size()):
 
 		var btn = letter_buttons[i]
