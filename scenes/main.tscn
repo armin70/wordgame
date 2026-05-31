@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UIRoot" parent="gameContainer" instance=ExtResource("2_0wfyh")]
+[node name="game_scene" parent="gameContainer" instance=ExtResource("2_0wfyh")]
 layout_mode = 2
 
 [connection signal="resized" from="." to="." method="_on_resized"]

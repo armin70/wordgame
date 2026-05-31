@@ -220,7 +220,7 @@ func update_hp_ui():
 	print(bot_hp)
 func _start_player_turn():
 	if game_finished: return
-	
+	update_turn_ui()
 	current_turn = "player"
 	set_buttons_enabled(true)
 	bot_status_label.text = "نوبت شماست"
@@ -470,7 +470,7 @@ func submit_current_word():
 func _start_bot_turn():
 	if game_finished or current_turn == "bot":
 		return
-
+	update_turn_ui()
 	current_turn = "bot"
 	set_buttons_enabled(false)
 
@@ -638,7 +638,18 @@ func flash_hp(label: Label, color: Color) -> void:
 	
 	label.modulate = original
 
+func update_turn_ui():
+	print("Current turn:", current_turn)
 
+	var player_bar = $PlayerHPBar
+	var bot_bar = $BotHPBar
+
+	if current_turn == "player":
+		player_bar.modulate = Color(0.5, 0.5, 0.5)
+		bot_bar.modulate = Color.WHITE
+	else:
+		player_bar.modulate = Color.WHITE
+		bot_bar.modulate = Color(0.5, 0.5, 0.5)
 func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()
 

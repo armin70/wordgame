@@ -174,7 +174,12 @@ grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CurrentWordLabel" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0027777778
+anchor_top = -0.0015625
+anchor_right = 0.0027777778
+anchor_bottom = 0.021875
 offset_left = 265.0
 offset_top = 660.0
 offset_right = 465.0
