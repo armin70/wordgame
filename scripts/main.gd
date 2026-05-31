@@ -32,7 +32,8 @@ func _process(delta):
 	if time_left <= 0:
 		turn_active = false
 		time_left = 0
-		$Puzzle.turn_over()
+		print('time is over')
+		$gameContainer/UIRoot.turn_over()
 		
 func reset_timer():
 	print("Timer Reset")
@@ -47,7 +48,7 @@ func _on_submit_pressed():
 
 func _on_clear_pressed():
 	if not game_finished:
-		$Puzzle.clear_current_word()
+		$gameContainer/UIRoot.clear_current_word()
 
 
 func restart_game():

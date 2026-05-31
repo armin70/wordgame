@@ -531,7 +531,7 @@ func add_found_word(word, owner):
 		label.text = "🔴 " + word
 
 	settings.font_color = Color("#000000")
-
+	settings.font_size = 30
 	settings.font = my_font
 
 	label.label_settings = settings
