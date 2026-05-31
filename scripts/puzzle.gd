@@ -70,6 +70,10 @@ var input_enabled := true
 	$LettersContainer/Letter4,
 	$LettersContainer/Letter5
 ]
+
+@onready var end_popup = $"../EndGamePopup"
+@onready var result_label = $"../EndGamePopup/VBoxContainer/ResultLabel"
+
 @onready var player_hp_label : Label = $"../UIRoot/PlayerHP"
 @onready var bot_hp_label : Label = $"../UIRoot/BotHP"
 
@@ -187,18 +191,31 @@ func apply_word_effect(word: String, owner: String):
 	update_hp_ui()
 	check_game_over()
 func check_game_over():
+
 	if player_hp <= 0:
 		game_finished = true
+		get_parent().game_finished = true
+		get_parent().turn_active = false
+
 		set_buttons_enabled(false)
-		feedback_label.text = "💀 باختی!"
+
+		result_label.text = "💀 شما باختید!"
+		end_popup.popup_centered()
 
 	elif bot_hp <= 0:
 		game_finished = true
+		get_parent().game_finished = true
+		get_parent().turn_active = false
+
 		set_buttons_enabled(false)
-		feedback_label.text = "🏆 بردی!"
+
+		result_label.text = "🏆 شما برنده شدید!"
+		end_popup.popup_centered()
+
+
 func update_hp_ui():
-	player_hp_label.text = "HP " + str(player_hp)
-	bot_hp_label.text = "HP " + str(bot_hp)
+	player_hp_label.text = str(player_hp)
+	bot_hp_label.text = str(bot_hp)
 
 	create_tween().tween_property($"../UIRoot/PlayerHPBar", "value", player_hp, 0.3)
 	create_tween().tween_property($"../UIRoot/BotHpBar", "value", bot_hp, 0.3)
@@ -452,15 +469,16 @@ func submit_current_word():
 
 	_clear_all_selections()
 func _start_bot_turn():
-	if game_finished or current_turn == "bot": return
-	
+	if game_finished or current_turn == "bot":
+		return
+
 	current_turn = "bot"
 	set_buttons_enabled(false)
-	get_parent().stop_timer() # مطمئن شویم تایمر بازیکن کاملاً متوقف است
-	
+
+	get_parent().reset_timer()
+
 	await perform_bot_move()
-	
-	# پس از پایان کاملِ حرکت ربات، نوبت به بازیکن داده می‌شود
+
 	if not game_finished:
 		_start_player_turn()
 func perform_bot_move():
@@ -483,6 +501,7 @@ func perform_bot_move():
 		
 		if randf() > 0.3:
 			var chosen = available_words.pick_random()
+			get_parent().stop_timer()
 			found_words.append(chosen)
 			word_owners[chosen] = "bot"
 			
@@ -505,11 +524,16 @@ func perform_bot_move():
 
 func add_found_word(word, owner):
 	var label = Label.new()
+	var settings = LabelSettings.new()
 
 	if owner == "player":
 		label.text = "🟢 " + word
+		settings.font_color = Color("#000000")
 	else:
 		label.text = "🔴 " + word
+		settings.font_color = Color("#000000")
+
+	label.label_settings = settings
 
 	found_words_container.add_child(label)
 
@@ -543,9 +567,12 @@ func set_buttons_enabled(enabled):
 	
 
 func turn_over():
+
 	if current_turn == "player":
-		print("Player time limit reached. Switching to bot...")
 		_start_bot_turn()
+
+	elif current_turn == "bot":
+		_start_player_turn()
 		
 func _reset_puzzle():
 	var new_puzzle = SocketManager.get_offline_test_puzzle()
@@ -609,3 +636,11 @@ func flash_hp(label: Label, color: Color) -> void:
 	await get_tree().create_timer(1).timeout
 	
 	label.modulate = original
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

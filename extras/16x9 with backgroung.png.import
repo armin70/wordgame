@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0jk80llyntvm"
-path="res://.godot/imported/الف.png-0e7c2fe1e2d34cf184d3dfd9e8c6780e.ctex"
+uid="uid://bhjkowgdnjewy"
+path="res://.godot/imported/16x9 with backgroung.png-27f3d252eab04a102994324751da2d74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/alphabet/الف.png"
-dest_files=["res://.godot/imported/الف.png-0e7c2fe1e2d34cf184d3dfd9e8c6780e.ctex"]
+source_file="res://extras/16x9 with backgroung.png"
+dest_files=["res://.godot/imported/16x9 with backgroung.png-27f3d252eab04a102994324751da2d74.ctex"]
 
 [params]
 

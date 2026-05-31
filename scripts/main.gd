@@ -9,7 +9,6 @@ func _ready():
 	$UIRoot/TimerBar.max_value = time_left
 	$UIRoot/TimerBar.value = time_left
 	$UIRoot/SubmitButton.pressed.connect(_on_submit_pressed)
-	$EndGamePopup/RestartButton.pressed.connect(_on_restart_pressed)
 	
 func _process(delta):
 	if game_finished or not turn_active:
@@ -40,13 +39,10 @@ func _on_clear_pressed():
 	if not game_finished:
 		$Puzzle.clear_current_word()
 
-func _on_restart_pressed():
-	$EndGamePopup.hide()
-	restart_game()
 
 func restart_game():
 	game_finished = false
 	time_left = 20.0
 	turn_active = false
 	$UIRoot/TimerLabel.text = "20"
-	# بقیه دستورات ریست بازی...
+	

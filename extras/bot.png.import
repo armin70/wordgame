@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0jk80llyntvm"
-path="res://.godot/imported/الف.png-0e7c2fe1e2d34cf184d3dfd9e8c6780e.ctex"
+uid="uid://dkwyfnt8kumjf"
+path="res://.godot/imported/bot.png-019b4462cfa619b790b3242812d409c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/alphabet/الف.png"
-dest_files=["res://.godot/imported/الف.png-0e7c2fe1e2d34cf184d3dfd9e8c6780e.ctex"]
+source_file="res://extras/bot.png"
+dest_files=["res://.godot/imported/bot.png-019b4462cfa619b790b3242812d409c4.ctex"]
 
 [params]
 
