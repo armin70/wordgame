@@ -61,39 +61,37 @@ var letter_textures = {
 # UI
 # =========================
 var input_enabled := true
-@onready var letters_container = $LettersContainer
 
 @onready var letter_buttons = [
-	$LettersContainer/Letter1,
-	$LettersContainer/Letter2,
-	$LettersContainer/Letter3,
-	$LettersContainer/Letter4,
-	$LettersContainer/Letter5
+	$Puzzle/LettersContainer/Letter1,
+	$Puzzle/LettersContainer/Letter2,
+	$Puzzle/LettersContainer/Letter3,
+	$Puzzle/LettersContainer/Letter4,
+	$Puzzle/LettersContainer/Letter5
 ]
+@onready var letters_container = $Puzzle/LettersContainer
+@onready var end_popup = $"EndGamePopup"
+@onready var result_label = $"EndGamePopup/VBoxContainer/ResultLabel"
 
-@onready var end_popup = $"../EndGamePopup"
-@onready var result_label = $"../EndGamePopup/VBoxContainer/ResultLabel"
+@onready var player_hp_label : Label = $"PlayerHP"
+@onready var bot_hp_label : Label = $"BotHP"
 
-@onready var player_hp_label : Label = $"../UIRoot/PlayerHP"
-@onready var bot_hp_label : Label = $"../UIRoot/BotHP"
-
-@onready var score_label = $"../UIRoot/ScoreLabel"
-@onready var feedback_label = $"../UIRoot/FeedbackLabel"
-@onready var found_count_label = $"../UIRoot/FoundCountLabel"
-@onready var found_words_container = $"../UIRoot/FoundWords"
-@onready var current_word_label = $"../UIRoot/CurrentWordLabel"
-@onready var bot_score_label = $"../UIRoot/BotScoreLabel"
-@onready var bot_status_label = $"../UIRoot/BotStatusLabel"
-@onready var drag_line: Line2D = $DragLine
+@onready var score_label = $"ScoreLabel"
+@onready var feedback_label = $"FeedbackLabel"
+@onready var found_count_label = $"FoundCountLabel"
+@onready var found_words_container = $"FoundWords"
+@onready var current_word_label = $"CurrentWordLabel"
+@onready var bot_score_label = $"BotScoreLabel"
+@onready var bot_status_label = $"BotStatusLabel"
+@onready var drag_line: Line2D = $Puzzle/DragLine
 func _ready():
 	drag_curve.set_bake_interval(1.0)
 	drag_curve.set_bake_interval(0.5)
 	SocketManager.puzzle_received.connect(start_puzzle)
-	$"../UIRoot/PlayerHPBar".max_value = max_hp
-	$"../UIRoot/BotHpBar".max_value = max_hp
+	$"PlayerHPBar".max_value = max_hp
 
-	$"../UIRoot/PlayerHP".text = str(player_hp)
-	$"../UIRoot/BotHP".text = str(bot_hp)
+	$"PlayerHP".text = str(player_hp)
+	$"BotHP".text = str(bot_hp)
 	if SocketManager.use_offline_puzzle:
 
 		await get_tree().process_frame
@@ -161,14 +159,14 @@ func apply_word_effect(word: String, owner: String):
 		if owner == "player":
 			player_hp = min(max_hp, player_hp + 7)
 
-			var bar = $"../UIRoot/PlayerHPBar"
+			var bar = $"PlayerHPBar"
 			bar.modulate = Color(0.4, 1, 0.4)
 			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 
 		else:
 			bot_hp = min(max_hp, bot_hp + 4)
 
-			var bar = $"../UIRoot/BotHpBar"
+			var bar = $BotHPBar
 			bar.modulate = Color(0.4, 1, 0.4)
 			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 
@@ -177,14 +175,14 @@ func apply_word_effect(word: String, owner: String):
 		if owner == "player":
 			bot_hp -= 2 * l
 
-			var bar = $"../UIRoot/BotHpBar"
+			var bar = $BotHPBar
 			bar.modulate = Color(1, 0.3, 0.3)
 			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 
 		else:
 			player_hp -= 2 * l
 
-			var bar = $"../UIRoot/PlayerHPBar"
+			var bar = $"PlayerHPBar"
 			bar.modulate = Color(1, 0.3, 0.3)
 			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 
@@ -194,8 +192,8 @@ func check_game_over():
 
 	if player_hp <= 0:
 		game_finished = true
-		get_parent().game_finished = true
-		get_parent().turn_active = false
+		get_parent().get_parent().game_finished = true
+		get_parent().get_parent().turn_active = false
 
 		set_buttons_enabled(false)
 
@@ -204,8 +202,8 @@ func check_game_over():
 
 	elif bot_hp <= 0:
 		game_finished = true
-		get_parent().game_finished = true
-		get_parent().turn_active = false
+		get_parent().get_parent().game_finished = true
+		get_parent().get_parent().turn_active = false
 
 		set_buttons_enabled(false)
 
@@ -217,8 +215,9 @@ func update_hp_ui():
 	player_hp_label.text = str(player_hp)
 	bot_hp_label.text = str(bot_hp)
 
-	create_tween().tween_property($"../UIRoot/PlayerHPBar", "value", player_hp, 0.3)
-	create_tween().tween_property($"../UIRoot/BotHpBar", "value", bot_hp, 0.3)
+	create_tween().tween_property($"PlayerHPBar", "value", player_hp, 0.3)
+	create_tween().tween_property($BotHPBar, "value", bot_hp, 0.3)
+	print(bot_hp)
 func _start_player_turn():
 	if game_finished: return
 	
@@ -227,7 +226,7 @@ func _start_player_turn():
 	bot_status_label.text = "نوبت شماست"
 	
 	# فعال کردن و ریست تایمر در اسکریپت اصلی
-	get_parent().reset_timer()
+	get_parent().get_parent().reset_timer()
 # =========================
 # GENERATE BUTTONS
 # =========================
@@ -475,7 +474,7 @@ func _start_bot_turn():
 	current_turn = "bot"
 	set_buttons_enabled(false)
 
-	get_parent().reset_timer()
+	get_parent().get_parent().reset_timer()
 
 	await perform_bot_move()
 
@@ -501,7 +500,7 @@ func perform_bot_move():
 		
 		if randf() > 0.3:
 			var chosen = available_words.pick_random()
-			get_parent().stop_timer()
+			get_parent().get_parent().stop_timer()
 			found_words.append(chosen)
 			word_owners[chosen] = "bot"
 			
@@ -521,17 +520,19 @@ func perform_bot_move():
 	bot_status_label.text = ""
 	# نکته مهم: اینجا دیگر هیچ تابعی را برای تغییر نوبت صدا نزنید.
 	# مدیریت نوبت به صورت زنجیره‌ای در تابعِ فرستنده (_start_bot_turn) انجام می‌شود.
-
+var my_font = preload("res://assets/fonts/Lalezar-Regular.ttf")
 func add_found_word(word, owner):
 	var label = Label.new()
 	var settings = LabelSettings.new()
 
 	if owner == "player":
 		label.text = "🟢 " + word
-		settings.font_color = Color("#000000")
 	else:
 		label.text = "🔴 " + word
-		settings.font_color = Color("#000000")
+
+	settings.font_color = Color("#000000")
+
+	settings.font = my_font
 
 	label.label_settings = settings
 

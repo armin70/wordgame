@@ -25,9 +25,9 @@ grow_vertical = 2
 
 [node name="Letter1" type="TextureButton" parent="LettersContainer"]
 layout_mode = 0
-offset_left = 287.0
+offset_left = 298.99994
 offset_top = 302.0
-offset_right = 425.0
+offset_right = 436.99994
 offset_bottom = 412.0
 scale = Vector2(0.74469316, 0.74469316)
 texture_normal = SubResource("CompressedTexture2D_4opeh")

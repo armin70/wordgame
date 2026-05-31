@@ -28,9 +28,7 @@ SocketManager="*res://scripts/SocketManager.gd"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 
 [internationalization]
