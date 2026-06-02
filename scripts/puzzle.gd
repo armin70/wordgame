@@ -171,7 +171,7 @@ func apply_word_effect(word: String, owner: String):
 	var l = word.length()
 
 	# HEAL
-	if l == 5:
+	if l == 4:
 		if owner == "player":
 			player_hp = min(max_hp, player_hp + 7)
 

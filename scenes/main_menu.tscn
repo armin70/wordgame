@@ -35,7 +35,7 @@ text = "دو نفره"
 [node name="singlePlayer" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
-text = "یک  نفره"
+text = "یک نفره"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/multiPlayer" to="." method="_on_multi_player_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/singlePlayer" to="." method="_on_single_player_pressed"]
