@@ -1,8 +1,5 @@
 extends Control
 
-func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
-
 
 func _on_multi_player_pressed() -> void:
 	PuzzleManager.is_multiplayer = true
