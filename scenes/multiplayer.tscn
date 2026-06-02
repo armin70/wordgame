@@ -1,0 +1,363 @@
+[gd_scene load_steps=33 format=3 uid="uid://d3li5d81edtgk"]
+
+[ext_resource type="Script" uid="uid://cetqrn4w7bxlq" path="res://scripts/puzzle_mp.gd" id="1_a6lh4"]
+[ext_resource type="Texture2D" uid="uid://be1vjpjcmchg" path="res://extras/UI_0.1.1.png" id="2_gpc4n"]
+[ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="3_r3wt4"]
+[ext_resource type="Texture2D" uid="uid://dkwyfnt8kumjf" path="res://extras/bot.png" id="5_um13p"]
+[ext_resource type="Texture2D" uid="uid://crpwasoqu3m6b" path="res://extras/player.png" id="6_rc2tn"]
+[ext_resource type="PackedScene" uid="uid://bvcohcdrbdnpi" path="res://scenes/puzzle.tscn" id="7_dtvy1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5spy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font = ExtResource("3_r3wt4")
+font_size = 35
+font_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkv2x"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+expand_margin_left = 20.0
+expand_margin_top = 10.0
+expand_margin_right = 20.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kk2rg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6xl0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tipki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 500
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 500
+
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
+font = ExtResource("3_r3wt4")
+font_size = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85g3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_choun"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ya4ey"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb6dy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8y0u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.92156863, 0.92156863, 0.92156863, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_choun"]
+font = ExtResource("3_r3wt4")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
+font = ExtResource("3_r3wt4")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utbpp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mw25s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcjrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvs2r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqxxy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ay1a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvo4r"]
+font = ExtResource("3_r3wt4")
+font_size = 45
+
+[node name="multiplayer" type="Control"]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a6lh4")
+
+[node name="EndGamePopup" type="Window" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(200, 200)
+visible = false
+exclusive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGamePopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -46.5
+offset_right = 41.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultLabel" type="Label" parent="EndGamePopup/VBoxContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="EndGamePopup/VBoxContainer"]
+layout_mode = 2
+text = "شروع مجدد"
+
+[node name="ExitButton" type="Button" parent="EndGamePopup/VBoxContainer"]
+layout_mode = 2
+text = "خروج"
+
+[node name="NoirTheme" type="Sprite2D" parent="."]
+position = Vector2(364.00003, 638)
+scale = Vector2(0.6644789, 0.66447866)
+texture = ExtResource("2_gpc4n")
+
+[node name="TimerBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 571.0
+offset_right = 596.0
+offset_bottom = 611.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ya4ey")
+max_value = 20.0
+value = 20.0
+show_percentage = false
+
+[node name="FoundWords" type="HFlowContainer" parent="."]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1273891
+anchor_top = 0.034375
+anchor_right = 0.85138905
+anchor_bottom = 0.04537501
+offset_left = -0.00018310547
+offset_right = -0.00012207031
+offset_bottom = 150.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentWordLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0027777778
+anchor_top = -0.0015625
+anchor_right = 0.0027777778
+anchor_bottom = 0.021875
+offset_left = 265.0
+offset_top = 660.0
+offset_right = 465.0
+offset_bottom = 686.0
+theme_override_colors/font_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b5spy")
+label_settings = SubResource("LabelSettings_0wfyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FeedbackLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.4027778
+anchor_top = -0.0328125
+anchor_right = -1.4027778
+anchor_bottom = -0.0171875
+offset_left = 1088.0
+offset_top = 230.0
+offset_right = 1128.0
+offset_bottom = 253.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_jkv2x")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubmitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75972223
+anchor_top = 0.55
+anchor_right = 0.75972223
+anchor_bottom = 0.55
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_vertical = 0
+scale = Vector2(1.9501774, 1.9501774)
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kk2rg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_o6xl0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tipki")
+action_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 571.0
+offset_right = 184.0
+offset_bottom = 621.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+text = "1"
+label_settings = SubResource("LabelSettings_85g3d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetPuzzle" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 75.0
+offset_top = 1152.0
+offset_right = 180.0
+offset_bottom = 1252.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_85g3d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_choun")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ya4ey")
+action_mode = 0
+
+[node name="shuffle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 701.0
+offset_right = 174.0
+offset_bottom = 801.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eb6dy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_trceg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a8y0u")
+
+[node name="Player1HPBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 259.0
+offset_right = 688.0
+offset_bottom = 532.0
+theme_override_styles/background = SubResource("StyleBoxFlat_85g3d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
+max_value = 15.0
+value = 15.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Player2HPBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 259.0
+offset_right = 353.0
+offset_bottom = 532.0
+theme_override_styles/background = SubResource("StyleBoxFlat_85g3d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
+max_value = 40.0
+value = 15.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Player1HP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 374.0
+offset_right = 553.0
+offset_bottom = 416.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+label_settings = SubResource("LabelSettings_choun")
+
+[node name="Player2HP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 369.0
+offset_right = 210.0
+offset_bottom = 411.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+label_settings = SubResource("LabelSettings_ya4ey")
+
+[node name="Bot" type="Sprite2D" parent="."]
+position = Vector2(76, 516)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_um13p")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(428, 510)
+scale = Vector2(0.5222222, 0.5222222)
+texture = ExtResource("6_rc2tn")
+
+[node name="Puzzle" parent="." instance=ExtResource("7_dtvy1")]
+layout_direction = 3
+layout_mode = 0
+offset_left = -52.0
+offset_top = 40.0
+offset_right = -52.0
+offset_bottom = 40.0
+script = null
+
+[node name="prevPuzzle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 915.0
+offset_right = 107.0
+offset_bottom = 1015.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_utbpp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mw25s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tcjrq")
+
+[node name="nextPuzzle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 915.0
+offset_right = 725.0
+offset_bottom = 1015.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rvs2r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqxxy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5ay1a")
+
+[node name="puzzleNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 932.0
+offset_right = 382.0
+offset_bottom = 1004.0
+text = "1"
+label_settings = SubResource("LabelSettings_uvo4r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="EndGamePopup/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="EndGamePopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="ResetPuzzle" to="." method="_on_reset_puzzle_pressed"]
+[connection signal="pressed" from="shuffle" to="." method="_on_shuffle_pressed"]
+[connection signal="pressed" from="prevPuzzle" to="." method="_on_prev_puzzle_pressed"]
+[connection signal="pressed" from="nextPuzzle" to="." method="_on_next_puzzle_pressed"]

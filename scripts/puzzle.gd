@@ -18,6 +18,7 @@ var current_turn := ""
 var prev_puzzles = []
 var drag_curve: Curve2D = Curve2D.new()
 var last_drag_pos: Vector2 = Vector2.ZERO
+var pending_puzzles = [] 
 # =========================
 # Letter Textures
 # =========================
@@ -61,7 +62,7 @@ var letter_textures = {
 # UI
 # =========================
 var input_enabled := true
-
+var current_puzzle_index = 0
 @onready var letter_buttons = [
 	$Puzzle/LettersContainer/Letter1,
 	$Puzzle/LettersContainer/Letter2,
@@ -84,6 +85,7 @@ var input_enabled := true
 @onready var bot_score_label = $"BotScoreLabel"
 @onready var bot_status_label = $"BotStatusLabel"
 @onready var drag_line: Line2D = $Puzzle/DragLine
+
 func _ready():
 	drag_curve.set_bake_interval(1.0)
 	drag_curve.set_bake_interval(0.5)
@@ -95,12 +97,16 @@ func _ready():
 	if SocketManager.use_offline_puzzle:
 
 		await get_tree().process_frame
-
-		var offline_data = SocketManager.get_offline_test_puzzle()
-
-		if !offline_data.is_empty():
-			prev_puzzles.append(offline_data.id)
-			start_puzzle(offline_data)
+		pending_puzzles.clear()
+		for i in range(3):
+			var p = SocketManager.get_offline_test_puzzle()
+			pending_puzzles.append(p)
+		print(pending_puzzles)
+		if !pending_puzzles.is_empty():
+			for i in range(3):
+				prev_puzzles.append(pending_puzzles[i-1].id)
+			start_puzzle(pending_puzzles[current_puzzle_index])
+			start_game()
 
 	# connect buttons
 
@@ -114,18 +120,12 @@ func _ready():
 # =========================
 func start_puzzle(data: Dictionary):
 	letters = data["letters"]
-	valid_words = []
-	player_hp = max_hp
-	bot_hp = max_hp
-	update_hp_ui()
-	# استخراج کلمات و وزن‌ها از ساختار جدید
-	for w in data["words"]:
-		var word_str = w["word"]
-		var weight_val = w.get("weight", 1) # اگر وزن نداشت پیش‌فرض ۱
-		
-		valid_words.append(word_str)
+	set_buttons_enabled(true)
+	_generate_letter_buttons()
 
-	# ریست کردن وضعیت بازی
+
+func start_game():
+	valid_words = []
 	found_words.clear()
 	word_owners.clear()
 	score = 0
@@ -134,28 +134,44 @@ func start_puzzle(data: Dictionary):
 	selecting = false
 	game_finished = false
 	_clear_all_selections()
-
-	# آپدیت UI
+	update_hp_ui()
+	player_hp = max_hp
+	bot_hp = max_hp
 	score_label.text = "امتیاز: 0"
 	feedback_label.text = ""
 	#found_count_label.text = "0 / " + str(valid_words.size())
 	current_word_label.text = ""
 	bot_score_label.text = "Bot: 0"
 	bot_status_label.text = ""
+	for i in range(3):
+		var data = pending_puzzles[i-1]
+		for w in data["words"]:
+			var word_str = w["word"]
+			if word_str not in valid_words:
+				valid_words.append(word_str)
 
 	_clear_found_words_ui()
-	set_buttons_enabled(true)
-	
-	#start_bot() 
-
-	_generate_letter_buttons()
 	_start_player_turn()
-	
+func load_next_puzzle():
+	current_puzzle_index += 1
+	if(current_puzzle_index) > 2:
+		current_puzzle_index =0
+	start_puzzle(pending_puzzles[current_puzzle_index])
+
+
+func load_prev_puzzle():
+	current_puzzle_index -= 1
+	if(current_puzzle_index) < 0:
+		current_puzzle_index = 2
+	start_puzzle(pending_puzzles[current_puzzle_index])
+
+
+
 func apply_word_effect(word: String, owner: String):
 	var l = word.length()
 
 	# HEAL
-	if l == 4:
+	if l == 5:
 		if owner == "player":
 			player_hp = min(max_hp, player_hp + 7)
 
@@ -164,7 +180,7 @@ func apply_word_effect(word: String, owner: String):
 			create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 
 		else:
-			bot_hp = min(max_hp, bot_hp + 4)
+			bot_hp = min(max_hp, bot_hp + 7)
 
 			var bar = $BotHPBar
 			bar.modulate = Color(0.4, 1, 0.4)
@@ -656,3 +672,11 @@ func _on_restart_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_next_puzzle_pressed() -> void:
+	load_next_puzzle()
+
+
+func _on_prev_puzzle_pressed() -> void:
+	load_prev_puzzle()

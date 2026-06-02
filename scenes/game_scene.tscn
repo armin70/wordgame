@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://cy50wck4j8bek"]
+[gd_scene load_steps=37 format=3 uid="uid://cy50wck4j8bek"]
 
 [ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="1_bw6k5"]
 [ext_resource type="Script" uid="uid://x7mfbnrnfbym" path="res://scripts/puzzle.gd" id="1_kk2rg"]
-[ext_resource type="Texture2D" uid="uid://c32yisatfrqeu" path="res://extras/16x9 new.png" id="1_rurhu"]
+[ext_resource type="Texture2D" uid="uid://be1vjpjcmchg" path="res://extras/UI_0.1.1.png" id="2_kk2rg"]
 [ext_resource type="FontFile" uid="uid://btclmw74tt5gn" path="res://assets/fonts/Vazirmatn-Medium.ttf" id="2_y3j0m"]
 [ext_resource type="Texture2D" uid="uid://dkwyfnt8kumjf" path="res://extras/bot.png" id="3_rurhu"]
 [ext_resource type="Texture2D" uid="uid://crpwasoqu3m6b" path="res://extras/player.png" id="4_kk2rg"]
@@ -102,6 +102,18 @@ font = ExtResource("1_bw6k5")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utbpp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mw25s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcjrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvs2r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqxxy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ay1a"]
+
 [node name="game_scene" type="Control"]
 layout_direction = 2
 layout_mode = 3
@@ -146,7 +158,7 @@ text = "خروج"
 [node name="NoirTheme" type="Sprite2D" parent="."]
 position = Vector2(364.00003, 638)
 scale = Vector2(0.6644789, 0.66447866)
-texture = ExtResource("1_rurhu")
+texture = ExtResource("2_kk2rg")
 
 [node name="TimerBar" type="ProgressBar" parent="."]
 layout_mode = 0
@@ -295,6 +307,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResetPuzzle" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 75.0
 offset_top = 1152.0
@@ -308,10 +321,10 @@ action_mode = 0
 
 [node name="shuffle" type="Button" parent="."]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 1153.0
-offset_right = 652.0
-offset_bottom = 1253.0
+offset_left = 74.0
+offset_top = 701.0
+offset_right = 174.0
+offset_bottom = 801.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eb6dy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_trceg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_a8y0u")
@@ -381,8 +394,30 @@ offset_right = -52.0
 offset_bottom = 40.0
 script = null
 
+[node name="prevPuzzle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 915.0
+offset_right = 107.0
+offset_bottom = 1015.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_utbpp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mw25s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tcjrq")
+
+[node name="nextPuzzle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 915.0
+offset_right = 725.0
+offset_bottom = 1015.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rvs2r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqxxy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5ay1a")
+
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="ResetPuzzle" to="." method="_on_reset_puzzle_pressed"]
 [connection signal="pressed" from="shuffle" to="." method="_on_shuffle_pressed"]
+[connection signal="pressed" from="prevPuzzle" to="." method="_on_prev_puzzle_pressed"]
+[connection signal="pressed" from="nextPuzzle" to="." method="_on_next_puzzle_pressed"]

@@ -2,11 +2,17 @@
 extends Control
 @onready var game_container: AspectRatioContainer = $gameContainer
 
-var time_left = 20.0
+var time_left = 20
 var game_finished = false
 var turn_active = false # کنترل حرکت تایمر
 @export var max_aspect : float = 1.0
 func _ready():
+	if PuzzleManager.is_multiplayer:
+		$gameContainer/game_scene.visible = false
+		$gameContainer/multiplayer.visible = true
+	else:
+		$gameContainer/game_scene.visible = true
+		$gameContainer/multiplayer.visible = false
 	_set_aspect()
 	$gameContainer/game_scene/TimerBar.max_value = time_left
 	$gameContainer/game_scene/TimerBar.value = time_left
@@ -28,16 +34,18 @@ func _process(delta):
 
 	$gameContainer/game_scene/TimerLabel.text = str(int(ceil(time_left)))
 	$gameContainer/game_scene/TimerBar.value = time_left
-
+	$gameContainer/multiplayer/TimerLabel.text = str(int(ceil(time_left)))
+	$gameContainer/multiplayer/TimerBar.value = time_left
 	if time_left <= 0:
 		turn_active = false
 		time_left = 0
 		print('time is over')
 		$gameContainer/game_scene.turn_over()
+		$gameContainer/multiplayer.turn_over()
 		
 func reset_timer():
 	print("Timer Reset")
-	time_left = 20.0
+	time_left = 20
 	turn_active = true # فعال شدن تایمر برای نوبت بازیکن
 
 func stop_timer():
@@ -56,7 +64,7 @@ func restart_game():
 	time_left = 20.0
 	turn_active = false
 	$gameContainer/game_scene/TimerLabel.text = "20"
-	
+	$gameContainer/multiplayer/TimerLabel.text = "20"
 
 
 func _on_resized() -> void:

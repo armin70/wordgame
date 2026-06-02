@@ -2,7 +2,7 @@ extends Node
 
 var puzzles = []
 var current_index = 0
-
+var is_multiplayer: bool = false
 func set_puzzle(puzzle_data):
 	puzzles = [puzzle_data]
 	current_index = 0
