@@ -1,6 +1,10 @@
 extends Control
-
+var max_time = 20
+var time_left = 20
 var valid_words = []
+var rock_valid_words = []
+var paper_valid_words = []
+var scissors_valid_words = []
 var found_words = []
 var word_owners = {}
 var player_hp := 40
@@ -17,6 +21,7 @@ var prev_puzzles = []
 
 var pending_puzzles = [] 
 var current_board = ""
+var player_current_board = ""
 # =========================
 # Letter Textures
 # =========================
@@ -52,7 +57,7 @@ func _ready():
 	$"PlayerHP".text = str(player_hp)
 	$"BotHP".text = str(bot_hp)
 	start_game()
-	
+	$TimerBar.max_value = max_time
 	# connect buttons
 
 
@@ -62,6 +67,14 @@ func get_formatted_time() -> String:
 	return "%02d:%02d" % [minutes, seconds]
 
 func _process(delta):
+	time_left -= delta
+
+	$TimerLabel.text = str(int(ceil(time_left)))
+	$TimerBar.value = time_left
+	if time_left <= 0:
+		time_left = 0
+		print('time is over')
+		turn_over()
 	total_seconds += delta
 	# آپدیت کردن متن لیبل با تایمر جهانی
 	total_timer_label.text = get_formatted_time()
@@ -93,36 +106,38 @@ func start_game():
 
 
 	_clear_found_words_ui()
+	await get_tree().create_timer(1.5).timeout
 	if PuzzleManager.is_player_turn:
 		_start_player_turn()
 	else:
 		_start_bot_turn()
+	update_turn_ui()
 
 func apply_word_effect(word: String, owner: String):
 	var damage = word.length()
-	 
+	multiplier +=1
 	if owner == "player":
-		bot_hp -= ((multiplier + 2)  * damage) - debuff
+		bot_hp -= (multiplier  * damage) - debuff
 
 		var bar = $BotHPBar
 		bar.modulate = Color(1, 0.3, 0.3)
 		create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
-		print('playeeeeeeeeeer:',((multiplier + 2)  * damage) - debuff)
+		print('playeeeeeeeeeer:',(multiplier  * damage) - debuff)
 	else:
-		player_hp -= ((multiplier + 2)  * damage) - debuff
+		player_hp -= (multiplier  * damage) - debuff
 
 		var bar = $"PlayerHPBar"
 		bar.modulate = Color(1, 0.3, 0.3)
 		create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
-		print('boooooooooot:',((multiplier + 2)  * damage) - debuff)
+		print('boooooooooot:',(multiplier  * damage) - debuff)
 	update_hp_ui()
 	check_game_over()
 func check_game_over():
 
 	if player_hp <= 0:
 		game_finished = true
-		get_parent().get_parent().game_finished = true
-		get_parent().get_parent().turn_active = false
+		#get_parent().get_parent().game_finished = true
+		#get_parent().get_parent().turn_active = false
 
 		#set_buttons_enabled(false)
 
@@ -131,8 +146,8 @@ func check_game_over():
 
 	elif bot_hp <= 0:
 		game_finished = true
-		get_parent().get_parent().game_finished = true
-		get_parent().get_parent().turn_active = false
+		#get_parent().get_parent().game_finished = true
+		#get_parent().get_parent().turn_active = false
 
 		#set_buttons_enabled(false)
 
@@ -150,15 +165,17 @@ func _start_player_turn():
 	if game_finished: return
 	update_turn_ui()
 	current_turn = "player"
+	print("current turn must be player: ",current_turn)
 	#set_buttons_enabled(true)
 	bot_status_label.text = "نوبت شماست"
 	
 	# فعال کردن و ریست تایمر در اسکریپت اصلی
-	get_parent().get_parent().reset_timer()
-	update_turn_ui()
+	reset_timer()
 	
 
-
+func reset_timer():
+	print("Timer Reset")
+	time_left = max_time
 
 # =========================
 # SUBMIT
@@ -179,11 +196,12 @@ func submit_current_word():
 		#+ " / " + str(valid_words.size())
 		
 		feedback_label.text = "✅ درست"
+		print("player_board:",player_current_board)
 		apply_word_effect(current_word, "player")
 		add_found_word(current_word,'player')
-		$RPSContainer.remove_type(current_board)
-		$RPSContainer.get_debuff(current_board)
-		$"puzzle container".board_buff(current_board)
+		$RPSContainer.remove_type(player_current_board)
+		$RPSContainer.get_debuff(player_current_board)
+		$"puzzle container".board_buff(player_current_board)
 		turn_over()
 	else:
 
@@ -191,13 +209,11 @@ func submit_current_word():
 
 	$"puzzle container"._clear_all_selections()
 func _start_bot_turn():
-	if game_finished or current_turn == "bot":
-		return
 	update_turn_ui()
 	current_turn = "bot"
 	#set_buttons_enabled(false)
-
-	get_parent().get_parent().reset_timer()
+	print("current turn: ",current_turn)
+	reset_timer()
 
 	await perform_bot_move()
 
@@ -205,16 +221,26 @@ func _start_bot_turn():
 		_start_player_turn()
 	
 func perform_bot_move():
+	var feedback =""
 	bot_status_label.text = "ربات در حال فکر کردن..."
+	print("ربات در حال فکر کردن...")
 	var bot_found = false
 	current_board = ["Rock","Paper","Scissors"].pick_random()
 	print("current board:",current_board)
 	while not bot_found:
+		print("ربات در حال جدا کردنه")
+		var words =[]
 		var available_words = []
-		for w in valid_words:
+		if current_board == "Rock":
+			words = rock_valid_words
+		elif current_board == "Paper":
+			words = paper_valid_words
+		elif current_board == "Scissors":
+			words = scissors_valid_words
+		for w in words:
 			if w not in found_words:
 				available_words.append(w)
-				
+		print("available_words:",available_words)
 		if available_words.size() == 0:
 			bot_status_label.text = "کلمه‌ای نمانده!"
 			await get_tree().create_timer(1.5).timeout
@@ -225,10 +251,9 @@ func perform_bot_move():
 		
 		if randf() > 0.3:
 			var chosen = available_words.pick_random()
-			get_parent().get_parent().stop_timer()
 			$RPSContainer.remove_type(current_board)
 			$RPSContainer.get_debuff(current_board)
-			
+			$"puzzle container".board_buff(current_board)
 			print("bot multi: ",multiplier)
 			found_words.append(chosen)
 			word_owners[chosen] = "bot"
@@ -243,7 +268,8 @@ func perform_bot_move():
 			apply_word_effect(chosen, "bot")
 			#update_found_count()
 			feedback_label.text = "ربات کلمه '" + chosen + "' را پیدا کرد."
-			
+			feedback = "ربات کلمه '" + chosen + "' را پیدا کرد."
+			print(feedback)
 			await get_tree().create_timer(1.5).timeout
 			bot_found = true 
 		else:
@@ -363,17 +389,17 @@ func flash_hp(label: Label, color: Color) -> void:
 	label.modulate = original
 
 func update_turn_ui():
-	print("Current turn:", current_turn)
-
 	var player_bar = $PlayerHPBar
 	var bot_bar = $BotHPBar
 
 	if current_turn == "player":
-		player_bar.modulate = Color(0.5, 0.5, 0.5)
-		bot_bar.modulate = Color.WHITE
-	else:
+		print("player_color")
 		player_bar.modulate = Color.WHITE
-		bot_bar.modulate = Color(0.5, 0.5, 0.5)
+		bot_bar.modulate = Color.GRAY
+	elif current_turn == "bot":
+		print("bot_color")
+		player_bar.modulate = Color.GRAY
+		bot_bar.modulate = Color.WHITE
 func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()
 

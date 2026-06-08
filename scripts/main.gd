@@ -17,11 +17,11 @@ func _ready():
 		$gameContainer/multiplayer.visible = false
 		max_time = 20
 	_set_aspect()
-	$gameContainer/game_scene/TimerBar.max_value = max_time
-	$gameContainer/multiplayer/TimerBar.max_value = max_time
-	$gameContainer/game_scene/TimerBar.value = max_time
-	$gameContainer/multiplayer/TimerBar.value = max_time
-	$gameContainer/game_scene/SubmitButton.pressed.connect(_on_submit_pressed)
+	#$gameContainer/game_scene/TimerBar.max_value = max_time
+	#$gameContainer/multiplayer/TimerBar.max_value = max_time
+	#$gameContainer/game_scene/TimerBar.value = max_time
+	#$gameContainer/multiplayer/TimerBar.value = max_time
+	#$gameContainer/game_scene/SubmitButton.pressed.connect(_on_submit_pressed)
 func _set_aspect():
 	var vp_rect = get_viewport_rect()
 	var aspect = vp_rect.size.x / vp_rect.size.y
@@ -30,22 +30,22 @@ func _set_aspect():
 	
 	game_container.ratio = aspect
 
-func _process(delta):
-	if game_finished or not turn_active:
-		return
+#func _process(delta):
+	#if game_finished or not turn_active:
+		#return
 
-	time_left -= delta
+	#time_left -= delta
 
-	$gameContainer/game_scene/TimerLabel.text = str(int(ceil(time_left)))
-	$gameContainer/game_scene/TimerBar.value = time_left
-	$gameContainer/multiplayer/TimerLabel.text = str(int(ceil(time_left)))
-	$gameContainer/multiplayer/TimerBar.value = time_left
-	if time_left <= 0:
-		turn_active = false
-		time_left = 0
-		print('time is over')
-		$gameContainer/game_scene.turn_over()
-		$gameContainer/multiplayer.turn_over()
+	#$gameContainer/game_scene/TimerLabel.text = str(int(ceil(time_left)))
+	#$gameContainer/game_scene/TimerBar.value = time_left
+	#$gameContainer/multiplayer/TimerLabel.text = str(int(ceil(time_left)))
+	#$gameContainer/multiplayer/TimerBar.value = time_left
+	#if time_left <= 0:
+		#turn_active = false
+		#time_left = 0
+		#print('time is over')
+		#$gameContainer/game_scene.turn_over()
+		#$gameContainer/multiplayer.turn_over()
 		
 func reset_timer():
 	print("Timer Reset")

@@ -89,6 +89,15 @@ func start_puzzle(data: Dictionary):
 		var puzzles = pending_puzzles[i-1]
 		for w in puzzles["words"]:
 			var word_str = w["word"]
+			if i == 0:
+				if word_str not in get_parent().rock_valid_words:
+					get_parent().rock_valid_words.append(word_str)
+			elif i == 1:
+				if word_str not in get_parent().paper_valid_words:
+					get_parent().paper_valid_words.append(word_str)
+			elif i == 2:
+				if word_str not in get_parent().scissors_valid_words:
+					get_parent().scissors_valid_words.append(word_str)
 			if word_str not in get_parent().valid_words:
 				get_parent().valid_words.append(word_str)
 	
@@ -109,15 +118,15 @@ func load_prev_puzzle():
 func change_texture(index):
 	if index == 0:
 		wheel.texture = WHEEL_ROCK
-		get_parent().current_board = "Rock"
+		get_parent().player_current_board = "Rock"
 		Show_board_buff(Rock_borad_buff)
 	elif index == 1:
 		wheel.texture = WHEEL_PAPER
-		get_parent().current_board = "Paper"
+		get_parent().player_current_board = "Paper"
 		Show_board_buff(Paper_borad_buff)
 	elif index == 2:
 		wheel.texture = WHEEL_SCISSOR
-		get_parent().current_board = "Scissors"
+		get_parent().player_current_board = "Scissors"
 		Show_board_buff(Scissors_borad_buff)
 		
 # =========================

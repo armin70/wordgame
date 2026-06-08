@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csai21487hcnt" path="res://extras/version 0.1.3(icons).png" id="3_utbpp"]
 [ext_resource type="Texture2D" uid="uid://crpwasoqu3m6b" path="res://extras/player.png" id="4_kk2rg"]
 [ext_resource type="PackedScene" uid="uid://dj1j541bnpras" path="res://scenes/puzzle_container.tscn" id="8_b5spy"]
-[ext_resource type="PackedScene" uid="uid://ce4hvwifsjreh" path="res://scenes/rps_container.tscn" id="9_utbpp"]
+[ext_resource type="PackedScene" uid="uid://ds8qtausq5e8i" path="res://scenes/rps__container.tscn" id="10_mw25s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldkr4"]
 
@@ -361,9 +361,9 @@ show_percentage = false
 [node name="BotHPBar" type="ProgressBar" parent="." unique_id=1030644256]
 layout_mode = 0
 offset_left = 29.0
-offset_top = 21.0
+offset_top = 16.0
 offset_right = 356.0
-offset_bottom = 307.0
+offset_bottom = 302.0
 theme_override_styles/background = SubResource("StyleBoxFlat_85g3d")
 theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
 max_value = 40.0
@@ -439,17 +439,11 @@ label_settings = SubResource("LabelSettings_kk2rg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RPSContainer" parent="." unique_id=1855434286 instance=ExtResource("9_utbpp")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 318.0
-offset_top = 450.0
-offset_right = 318.0
-offset_bottom = 450.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="RPSContainer" parent="." unique_id=917461322 instance=ExtResource("10_mw25s")]
+position = Vector2(131, 518)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1897293935]
+position = Vector2(364, 634)
 
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

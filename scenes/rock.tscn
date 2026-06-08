@@ -1,7 +1,62 @@
 [gd_scene format=3 uid="uid://dx1kcjudo0gxe"]
 
-[ext_resource type="Texture2D" uid="uid://ww2v4le4n3cp" path="res://extras/Rock.png" id="1_1di36"]
+[ext_resource type="Texture2D" uid="uid://ce4puu0k5ckhl" path="res://extras/rock sprite sheet.png" id="1_1di36"]
+[ext_resource type="Script" uid="uid://cjjax8hoyd3gm" path="res://scripts/rock.gd" id="1_mek2u"]
 
-[node name="rock" type="TextureRect" unique_id=1911113149]
-texture = ExtResource("1_1di36")
-expand_mode = 2
+[sub_resource type="AtlasTexture" id="AtlasTexture_1di36"]
+atlas = ExtResource("1_1di36")
+region = Rect2(0, 0, 362, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mek2u"]
+atlas = ExtResource("1_1di36")
+region = Rect2(362, 0, 362, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik6fu"]
+atlas = ExtResource("1_1di36")
+region = Rect2(724, 0, 362, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_872ht"]
+atlas = ExtResource("1_1di36")
+region = Rect2(1086, 0, 362, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2d0s"]
+atlas = ExtResource("1_1di36")
+region = Rect2(1448, 0, 362, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqvgd"]
+atlas = ExtResource("1_1di36")
+region = Rect2(1810, 0, 362, 272)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmkyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1di36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mek2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_872ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2d0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqvgd")
+}],
+"loop": false,
+"name": &"break",
+"speed": 5.0
+}]
+
+[node name="rock" type="Node2D" unique_id=2080828846]
+script = ExtResource("1_mek2u")
+
+[node name="animation" type="AnimatedSprite2D" parent="." unique_id=927427797]
+scale = Vector2(0.37570417, 0.37570417)
+sprite_frames = SubResource("SpriteFrames_rmkyt")
+animation = &"break"

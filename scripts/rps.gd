@@ -57,8 +57,8 @@ func play_result_animation():
 
 	if player_won:
 		print("شما بردید! شما شروع‌کننده هستید.")
-		PuzzleManager.is_player_turn = true
-		player_turn = true
+		PuzzleManager.is_player_turn = false
+		player_turn = false
 	else:
 		PuzzleManager.is_player_turn = false
 		print("ربات برد! او شروع‌کننده است.")

@@ -1,5 +1,6 @@
 extends Control
-
+var max_time = 20
+var time_left = 20
 var letters = []
 var valid_words = []
 var found_words = []
@@ -259,18 +260,20 @@ func _start_player_turn():
 	set_buttons_enabled(true)
 	update_turn_background()
 	# فعال کردن و ریست تایمر در اسکریپت اصلی
-	get_parent().get_parent().reset_timer()
+	reset_timer()
 func _start_player2_turn():
 	if game_finished: return
 	update_turn_ui()
 	current_turn = "player2"
 	set_buttons_enabled(true)
 	update_turn_background()
-	get_parent().get_parent().reset_timer()
+	reset_timer()
 # =========================
 # GENERATE BUTTONS
 # =========================
-
+func reset_timer():
+	print("Timer Reset")
+	time_left = max_time
 func _generate_letter_buttons():
 
 	letters.shuffle()
@@ -288,7 +291,6 @@ func _generate_letter_buttons():
 			btn.set_meta("letter", letters[i])
 
 		else:
-
 			btn.visible = false
 
 # =========================

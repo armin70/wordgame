@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ds8qtausq5e8i"]
+
+[ext_resource type="Script" uid="uid://dncf34ftaeamu" path="res://scripts/rps__container.gd" id="1_lhwqr"]
+
+[node name="RPS__container" type="Node2D" unique_id=917461322]
+script = ExtResource("1_lhwqr")
+
+[node name="place1" type="Node2D" parent="." unique_id=68685773]
+
+[node name="place2" type="Node2D" parent="." unique_id=209174669]
+position = Vector2(150, 0)
+
+[node name="place3" type="Node2D" parent="." unique_id=1142296674]
+position = Vector2(300, 0)
+
+[node name="place4" type="Node2D" parent="." unique_id=321960493]
+position = Vector2(450, 0)
