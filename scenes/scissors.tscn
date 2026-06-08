@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c43c7km5wekoc"]
+
+[ext_resource type="Texture2D" uid="uid://bji4rmdljiynn" path="res://extras/scissor.png" id="1_ba3ks"]
+
+[node name="scissors" type="TextureRect" unique_id=781152431]
+texture = ExtResource("1_ba3ks")
+expand_mode = 2

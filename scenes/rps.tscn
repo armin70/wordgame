@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bl6juicjgfjmn"]
+
+[ext_resource type="Script" uid="uid://cut3lq5gi7x7l" path="res://scripts/rps.gd" id="1_1hquy"]
+[ext_resource type="Texture2D" uid="uid://cn718142jdbqv" path="res://extras/r,p,s sprite sheet.png" id="2_vp3gd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbgi4"]
+atlas = ExtResource("2_vp3gd")
+region = Rect2(0, 0, 1080, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tefeu"]
+atlas = ExtResource("2_vp3gd")
+region = Rect2(1080, 0, 1080, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
+atlas = ExtResource("2_vp3gd")
+region = Rect2(2160, 0, 1080, 1920)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qj5d6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbgi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tefeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6xl0")
+}],
+"loop": true,
+"name": &"loop_rps",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hquy"]
+size = Vector2(717, 1280)
+
+[node name="RPS" type="Control" unique_id=1171910879]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 6.0
+script = ExtResource("1_1hquy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=191490923]
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer" unique_id=1781302326]
+
+[node name="RPSAnimationPlayer" type="AnimatedSprite2D" parent="CanvasLayer/Area2D" unique_id=884001153]
+position = Vector2(352, 646)
+scale = Vector2(0.6805095, 0.66318303)
+sprite_frames = SubResource("SpriteFrames_qj5d6")
+animation = &"loop_rps"
+autoplay = "loop_rps"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Area2D" unique_id=1839745665]
+position = Vector2(354, 636)
+shape = SubResource("RectangleShape2D_1hquy")
+
+[connection signal="input_event" from="CanvasLayer/Area2D" to="." method="_on_area_2d_input_event"]

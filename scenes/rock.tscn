@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dx1kcjudo0gxe"]
+
+[ext_resource type="Texture2D" uid="uid://ww2v4le4n3cp" path="res://extras/Rock.png" id="1_1di36"]
+
+[node name="rock" type="TextureRect" unique_id=1911113149]
+texture = ExtResource("1_1di36")
+expand_mode = 2

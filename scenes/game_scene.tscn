@@ -1,12 +1,16 @@
-[gd_scene load_steps=37 format=3 uid="uid://cy50wck4j8bek"]
+[gd_scene format=3 uid="uid://cy50wck4j8bek"]
 
 [ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="1_bw6k5"]
 [ext_resource type="Script" uid="uid://x7mfbnrnfbym" path="res://scripts/puzzle.gd" id="1_kk2rg"]
-[ext_resource type="Texture2D" uid="uid://be1vjpjcmchg" path="res://extras/UI_0.1.1.png" id="2_kk2rg"]
+[ext_resource type="Texture2D" uid="uid://dj3e0pdwahjso" path="res://extras/wp12636086.png" id="2_b5spy"]
 [ext_resource type="FontFile" uid="uid://btclmw74tt5gn" path="res://assets/fonts/Vazirmatn-Medium.ttf" id="2_y3j0m"]
 [ext_resource type="Texture2D" uid="uid://dkwyfnt8kumjf" path="res://extras/bot.png" id="3_rurhu"]
+[ext_resource type="Texture2D" uid="uid://csai21487hcnt" path="res://extras/version 0.1.3(icons).png" id="3_utbpp"]
 [ext_resource type="Texture2D" uid="uid://crpwasoqu3m6b" path="res://extras/player.png" id="4_kk2rg"]
-[ext_resource type="PackedScene" uid="uid://bvcohcdrbdnpi" path="res://scenes/puzzle.tscn" id="6_kk2rg"]
+[ext_resource type="PackedScene" uid="uid://dj1j541bnpras" path="res://scenes/puzzle_container.tscn" id="8_b5spy"]
+[ext_resource type="PackedScene" uid="uid://ce4hvwifsjreh" path="res://scenes/rps_container.tscn" id="9_utbpp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldkr4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 bg_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
@@ -114,7 +118,11 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ay1a"]
 
-[node name="game_scene" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_kk2rg"]
+font = ExtResource("1_bw6k5")
+font_size = 22
+
+[node name="game_scene" type="Control" unique_id=1224919347]
 layout_direction = 2
 layout_mode = 3
 anchors_preset = 15
@@ -124,14 +132,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kk2rg")
 
-[node name="EndGamePopup" type="Window" parent="."]
+[node name="EndGamePopup" type="Window" parent="." unique_id=1706601305]
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(200, 200)
 visible = false
 exclusive = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndGamePopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGamePopup" unique_id=106903490]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -144,34 +152,41 @@ offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResultLabel" type="Label" parent="EndGamePopup/VBoxContainer"]
+[node name="ResultLabel" type="Label" parent="EndGamePopup/VBoxContainer" unique_id=848380529]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="EndGamePopup/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="EndGamePopup/VBoxContainer" unique_id=1728168996]
 layout_mode = 2
 text = "شروع مجدد"
 
-[node name="ExitButton" type="Button" parent="EndGamePopup/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="EndGamePopup/VBoxContainer" unique_id=975625036]
 layout_mode = 2
 text = "خروج"
 
-[node name="NoirTheme" type="Sprite2D" parent="."]
-position = Vector2(364.00003, 638)
-scale = Vector2(0.6644789, 0.66447866)
-texture = ExtResource("2_kk2rg")
+[node name="NoirTheme" type="Sprite2D" parent="." unique_id=978554589]
+position = Vector2(364, 638)
+scale = Vector2(0.55930495, 0.4570724)
+texture = ExtResource("2_b5spy")
 
-[node name="TimerBar" type="ProgressBar" parent="."]
+[node name="Version0_1_3(icons)" type="Sprite2D" parent="." unique_id=2000542607]
+position = Vector2(363, 644)
+scale = Vector2(0.67426383, 0.67426383)
+texture = ExtResource("3_utbpp")
+
+[node name="TimerBar" type="ProgressBar" parent="." unique_id=1627815628]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 571.0
-offset_right = 596.0
-offset_bottom = 611.0
+offset_left = 188.0
+offset_top = 325.0
+offset_right = 601.0
+offset_bottom = 388.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_ldkr4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ya4ey")
 max_value = 20.0
 value = 20.0
 show_percentage = false
 
-[node name="FoundWords" type="HFlowContainer" parent="."]
+[node name="FoundWords" type="HFlowContainer" parent="." unique_id=1147281222]
+visible = false
 layout_direction = 3
 layout_mode = 1
 anchors_preset = -1
@@ -185,7 +200,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrentWordLabel" type="Label" parent="."]
+[node name="CurrentWordLabel" type="Label" parent="." unique_id=2111911172]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0027777778
@@ -204,7 +219,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="FeedbackLabel" type="Label" parent="."]
+[node name="FeedbackLabel" type="Label" parent="." unique_id=838785517]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.4027778
@@ -218,7 +234,7 @@ offset_bottom = 253.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_jkv2x")
 metadata/_edit_use_anchors_ = true
 
-[node name="BotStatusLabel" type="Label" parent="."]
+[node name="BotStatusLabel" type="Label" parent="." unique_id=965278250]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -233,7 +249,7 @@ offset_bottom = 228.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_muem4")
 metadata/_edit_use_anchors_ = true
 
-[node name="BotScoreLabel" type="Label" parent="."]
+[node name="BotScoreLabel" type="Label" parent="." unique_id=1508274150]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -249,7 +265,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_dp3eg")
 text = "bot : 0"
 metadata/_edit_use_anchors_ = true
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="." unique_id=933071364]
 visible = false
 layout_direction = 3
 layout_mode = 1
@@ -271,7 +287,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_sugp2")
 metadata/_edit_use_anchors_ = true
 
-[node name="SubmitButton" type="Button" parent="."]
+[node name="SubmitButton" type="Button" parent="." unique_id=293878320]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75972223
@@ -291,12 +307,12 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_tipki")
 action_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="TimerLabel" type="Label" parent="."]
+[node name="TimerLabel" type="Label" parent="." unique_id=654293002]
 layout_mode = 0
-offset_left = 134.0
-offset_top = 571.0
-offset_right = 184.0
-offset_bottom = 621.0
+offset_left = 130.0
+offset_top = 335.0
+offset_right = 180.0
+offset_bottom = 385.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 40
@@ -306,7 +322,7 @@ label_settings = SubResource("LabelSettings_85g3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResetPuzzle" type="Button" parent="."]
+[node name="ResetPuzzle" type="Button" parent="." unique_id=1504869934]
 visible = false
 layout_mode = 0
 offset_left = 75.0
@@ -319,7 +335,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_choun")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ya4ey")
 action_mode = 0
 
-[node name="shuffle" type="Button" parent="."]
+[node name="shuffle" type="Button" parent="." unique_id=443786606]
 layout_mode = 0
 offset_left = 74.0
 offset_top = 701.0
@@ -329,12 +345,12 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_eb6dy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_trceg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_a8y0u")
 
-[node name="PlayerHPBar" type="ProgressBar" parent="."]
+[node name="PlayerHPBar" type="ProgressBar" parent="." unique_id=1184940997]
 layout_mode = 0
-offset_left = 374.0
-offset_top = 259.0
-offset_right = 688.0
-offset_bottom = 532.0
+offset_left = 370.0
+offset_top = 15.0
+offset_right = 697.0
+offset_bottom = 301.0
 theme_override_styles/background = SubResource("StyleBoxFlat_85g3d")
 theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
 max_value = 15.0
@@ -342,12 +358,12 @@ value = 15.0
 fill_mode = 3
 show_percentage = false
 
-[node name="BotHPBar" type="ProgressBar" parent="."]
+[node name="BotHPBar" type="ProgressBar" parent="." unique_id=1030644256]
 layout_mode = 0
-offset_left = 39.0
-offset_top = 259.0
-offset_right = 353.0
-offset_bottom = 532.0
+offset_left = 29.0
+offset_top = 21.0
+offset_right = 356.0
+offset_bottom = 307.0
 theme_override_styles/background = SubResource("StyleBoxFlat_85g3d")
 theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
 max_value = 40.0
@@ -355,46 +371,44 @@ value = 15.0
 fill_mode = 3
 show_percentage = false
 
-[node name="PlayerHP" type="Label" parent="."]
+[node name="PlayerHP" type="Label" parent="." unique_id=272950325]
 layout_mode = 0
-offset_left = 513.0
-offset_top = 374.0
-offset_right = 553.0
-offset_bottom = 416.0
+offset_left = 506.0
+offset_top = 124.0
+offset_right = 546.0
+offset_bottom = 188.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 label_settings = SubResource("LabelSettings_choun")
 
-[node name="BotHP" type="Label" parent="."]
+[node name="BotHP" type="Label" parent="." unique_id=1430181628]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 369.0
-offset_right = 210.0
-offset_bottom = 411.0
+offset_left = 160.25
+offset_top = 137.0
+offset_right = 200.25
+offset_bottom = 201.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 label_settings = SubResource("LabelSettings_ya4ey")
 
-[node name="Bot" type="Sprite2D" parent="."]
-position = Vector2(76, 516)
+[node name="Bot" type="Sprite2D" parent="." unique_id=1393963999]
+position = Vector2(66.25, 284)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_rurhu")
 
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(428, 510)
+[node name="Player" type="Sprite2D" parent="." unique_id=371571124]
+position = Vector2(423, 270)
 scale = Vector2(0.5222222, 0.5222222)
 texture = ExtResource("4_kk2rg")
 
-[node name="Puzzle" parent="." instance=ExtResource("6_kk2rg")]
-layout_direction = 3
+[node name="puzzle container" parent="." unique_id=75891022 instance=ExtResource("8_b5spy")]
 layout_mode = 0
-offset_left = -52.0
-offset_top = 40.0
-offset_right = -52.0
-offset_bottom = 40.0
-script = null
+offset_left = 694.0
+offset_top = 11.0
+offset_right = 734.0
+offset_bottom = 51.0
 
-[node name="prevPuzzle" type="Button" parent="."]
+[node name="prevPuzzle" type="Button" parent="." unique_id=1781281136]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 915.0
@@ -404,7 +418,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_utbpp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mw25s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tcjrq")
 
-[node name="nextPuzzle" type="Button" parent="."]
+[node name="nextPuzzle" type="Button" parent="." unique_id=1378656902]
 layout_mode = 0
 offset_left = 625.0
 offset_top = 915.0
@@ -413,6 +427,29 @@ offset_bottom = 1015.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rvs2r")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqxxy")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5ay1a")
+
+[node name="TotalTimerLabel" type="Label" parent="." unique_id=1826637056]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 1219.0
+offset_right = 79.0
+offset_bottom = 1258.0
+text = "00:01"
+label_settings = SubResource("LabelSettings_kk2rg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RPSContainer" parent="." unique_id=1855434286 instance=ExtResource("9_utbpp")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 318.0
+offset_top = 450.0
+offset_right = 318.0
+offset_bottom = 450.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

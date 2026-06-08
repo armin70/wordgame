@@ -7,6 +7,7 @@ var game_finished = false
 var turn_active = false # کنترل حرکت تایمر
 @export var max_aspect : float = 1.0
 func _ready():
+
 	if PuzzleManager.is_multiplayer:
 		$gameContainer/game_scene.visible = false
 		$gameContainer/multiplayer.visible = true

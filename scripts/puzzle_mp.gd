@@ -10,6 +10,7 @@ var max_hp := 40
 var current_word = ""
 var score = 0
 var bot_score = 0
+@onready var total_timer_label: Label = $TotalTimerLabel
 
 var selected_buttons: Array = []
 var selecting := false
@@ -22,6 +23,9 @@ var pending_puzzles = []
 # =========================
 # Letter Textures
 # =========================
+@onready var background_rect : Sprite2D = $NoirTheme
+const bg_player1  = preload("uid://dlaotwr7k5qkb")
+const bg_player2  = preload("uid://7l3tedfxqwo6")
 
 var letter_textures = {
 	"ا": preload("res://assets/alphabet/الف.png"),
@@ -85,6 +89,7 @@ var current_puzzle_index = 0
 @onready var bot_score_label = $"BotScoreLabel"
 @onready var bot_status_label = $"BotStatusLabel"
 @onready var drag_line: Line2D = $Puzzle/DragLine
+var total_seconds: float = 0.0
 
 func _ready():
 	drag_curve.set_bake_interval(1.0)
@@ -102,7 +107,6 @@ func _ready():
 		for i in range(3):
 			var p = SocketManager.get_offline_test_puzzle()
 			pending_puzzles.append(p)
-		print(pending_puzzles)
 		if !pending_puzzles.is_empty():
 			for i in range(3):
 				prev_puzzles.append(pending_puzzles[i-1].id)
@@ -116,7 +120,15 @@ func _ready():
 
 		var c = Callable(self, "_on_button_gui_input").bind(button)
 		button.gui_input.connect(c)
+func get_formatted_time() -> String:
+	var minutes = int(total_seconds) / 60
+	var seconds = int(total_seconds) % 60
+	return "%02d:%02d" % [minutes, seconds]
 
+func _process(delta):
+	total_seconds += delta
+	# آپدیت کردن متن لیبل با تایمر جهانی
+	total_timer_label.text = get_formatted_time()
 # =========================
 # START PUZZLE
 # =========================
@@ -166,7 +178,11 @@ func load_prev_puzzle():
 	_update_puzzle_number(current_puzzle_index)
 	start_puzzle(pending_puzzles[current_puzzle_index])
 
-
+func update_turn_background():
+	if current_turn == "player":
+		background_rect.texture = bg_player1
+	else:
+		background_rect.texture = bg_player2
 
 func apply_word_effect(word: String, owner: String):
 	var l = word.length()
@@ -241,7 +257,7 @@ func _start_player_turn():
 	update_turn_ui()
 	current_turn = "player"
 	set_buttons_enabled(true)
-	
+	update_turn_background()
 	# فعال کردن و ریست تایمر در اسکریپت اصلی
 	get_parent().get_parent().reset_timer()
 func _start_player2_turn():
@@ -249,8 +265,7 @@ func _start_player2_turn():
 	update_turn_ui()
 	current_turn = "player2"
 	set_buttons_enabled(true)
-	
-	# فعال کردن و ریست تایمر در اسکریپت اصلی
+	update_turn_background()
 	get_parent().get_parent().reset_timer()
 # =========================
 # GENERATE BUTTONS

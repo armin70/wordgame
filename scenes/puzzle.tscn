@@ -1,29 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvcohcdrbdnpi"]
+[gd_scene format=3 uid="uid://bvcohcdrbdnpi"]
 
 [ext_resource type="Script" uid="uid://x7mfbnrnfbym" path="res://scripts/puzzle.gd" id="1_64ty3"]
+[ext_resource type="Texture2D" uid="uid://calqm48l833xu" path="res://extras/wheel paper.png" id="2_5ifmx"]
 [ext_resource type="Texture2D" uid="uid://xbwbpe7sb8uu" path="res://assets/alphabet/ر.png" id="4_3asjn"]
+[ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="4_t8qc4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4opeh"]
 load_path = "res://.godot/imported/الف.png-0e7c2fe1e2d34cf184d3dfd9e8c6780e.ctex"
 
-[node name="Puzzle" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_wsi0i"]
+font = ExtResource("4_t8qc4")
+font_size = 80
+
+[node name="Puzzle" type="Control" unique_id=595414939]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_64ty3")
 
-[node name="LettersContainer" type="Control" parent="."]
+[node name="LettersContainer" type="Control" parent="." unique_id=884799417]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = 423.0
-offset_right = 26.0
-offset_bottom = 423.0
+offset_left = -9.0
+offset_top = 416.0
+offset_right = -9.0
+offset_bottom = 416.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Letter1" type="TextureButton" parent="LettersContainer"]
+[node name="Wheel" type="Sprite2D" parent="LettersContainer" unique_id=2088958079]
+position = Vector2(-380, 494.99994)
+scale = Vector2(0.64636457, 0.64636457)
+texture = ExtResource("2_5ifmx")
+
+[node name="Letter1" type="TextureButton" parent="LettersContainer" unique_id=1074735793]
 layout_mode = 0
 offset_left = 298.99994
 offset_top = 302.0
@@ -34,7 +45,7 @@ texture_normal = SubResource("CompressedTexture2D_4opeh")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter2" type="TextureButton" parent="LettersContainer"]
+[node name="Letter2" type="TextureButton" parent="LettersContainer" unique_id=566002874]
 layout_mode = 0
 offset_left = 143.99997
 offset_top = 415.0
@@ -45,7 +56,7 @@ texture_normal = SubResource("CompressedTexture2D_4opeh")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter3" type="TextureButton" parent="LettersContainer"]
+[node name="Letter3" type="TextureButton" parent="LettersContainer" unique_id=1169380267]
 layout_mode = 0
 offset_left = 190.99997
 offset_top = 592.0
@@ -56,7 +67,7 @@ texture_normal = SubResource("CompressedTexture2D_4opeh")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter4" type="TextureButton" parent="LettersContainer"]
+[node name="Letter4" type="TextureButton" parent="LettersContainer" unique_id=328532410]
 layout_mode = 0
 offset_left = 389.0
 offset_top = 596.0
@@ -67,7 +78,7 @@ texture_normal = SubResource("CompressedTexture2D_4opeh")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Letter5" type="TextureButton" parent="LettersContainer"]
+[node name="Letter5" type="TextureButton" parent="LettersContainer" unique_id=284860571]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 415.0
@@ -78,8 +89,19 @@ texture_normal = ExtResource("4_3asjn")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="DragLine" type="Line2D" parent="."]
+[node name="DragLine" type="Line2D" parent="." unique_id=1010675845]
 z_index = 100
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="BoradBuff" type="Label" parent="." unique_id=159346624]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 637.0
+offset_right = 244.0
+offset_bottom = 764.0
+text = "1"
+label_settings = SubResource("LabelSettings_wsi0i")
+horizontal_alignment = 1
+vertical_alignment = 1

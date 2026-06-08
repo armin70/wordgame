@@ -1,7 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://d3li5d81edtgk"]
+[gd_scene format=3 uid="uid://d3li5d81edtgk"]
 
 [ext_resource type="Script" uid="uid://cetqrn4w7bxlq" path="res://scripts/puzzle_mp.gd" id="1_a6lh4"]
-[ext_resource type="Texture2D" uid="uid://be1vjpjcmchg" path="res://extras/UI_0.1.1.png" id="2_gpc4n"]
+[ext_resource type="Texture2D" uid="uid://fn16bdq3nn28" path="res://extras/version 0.1.1 with timer.png" id="2_uvo4r"]
 [ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="3_r3wt4"]
 [ext_resource type="Texture2D" uid="uid://dkwyfnt8kumjf" path="res://extras/bot.png" id="5_um13p"]
 [ext_resource type="Texture2D" uid="uid://crpwasoqu3m6b" path="res://extras/player.png" id="6_rc2tn"]
@@ -96,7 +96,11 @@ font_color = Color(0, 0, 0, 1)
 font = ExtResource("3_r3wt4")
 font_size = 45
 
-[node name="multiplayer" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_a6lh4"]
+font = ExtResource("3_r3wt4")
+font_size = 22
+
+[node name="multiplayer" type="Control" unique_id=844118973]
 layout_direction = 2
 layout_mode = 3
 anchors_preset = 15
@@ -106,14 +110,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a6lh4")
 
-[node name="EndGamePopup" type="Window" parent="."]
+[node name="EndGamePopup" type="Window" parent="." unique_id=106647037]
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(200, 200)
 visible = false
 exclusive = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndGamePopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGamePopup" unique_id=988012948]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -126,23 +130,23 @@ offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResultLabel" type="Label" parent="EndGamePopup/VBoxContainer"]
+[node name="ResultLabel" type="Label" parent="EndGamePopup/VBoxContainer" unique_id=794024680]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="EndGamePopup/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="EndGamePopup/VBoxContainer" unique_id=1470879043]
 layout_mode = 2
 text = "شروع مجدد"
 
-[node name="ExitButton" type="Button" parent="EndGamePopup/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="EndGamePopup/VBoxContainer" unique_id=859186474]
 layout_mode = 2
 text = "خروج"
 
-[node name="NoirTheme" type="Sprite2D" parent="."]
+[node name="NoirTheme" type="Sprite2D" parent="." unique_id=59090728]
 position = Vector2(364.00003, 638)
 scale = Vector2(0.6644789, 0.66447866)
-texture = ExtResource("2_gpc4n")
+texture = ExtResource("2_uvo4r")
 
-[node name="TimerBar" type="ProgressBar" parent="."]
+[node name="TimerBar" type="ProgressBar" parent="." unique_id=1008746807]
 layout_mode = 0
 offset_left = 192.0
 offset_top = 571.0
@@ -153,7 +157,7 @@ max_value = 20.0
 value = 20.0
 show_percentage = false
 
-[node name="FoundWords" type="HFlowContainer" parent="."]
+[node name="FoundWords" type="HFlowContainer" parent="." unique_id=850292147]
 layout_direction = 3
 layout_mode = 1
 anchors_preset = -1
@@ -167,7 +171,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrentWordLabel" type="Label" parent="."]
+[node name="CurrentWordLabel" type="Label" parent="." unique_id=76074205]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0027777778
@@ -186,7 +190,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="FeedbackLabel" type="Label" parent="."]
+[node name="FeedbackLabel" type="Label" parent="." unique_id=165203689]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.4027778
@@ -200,7 +204,7 @@ offset_bottom = 253.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_jkv2x")
 metadata/_edit_use_anchors_ = true
 
-[node name="SubmitButton" type="Button" parent="."]
+[node name="SubmitButton" type="Button" parent="." unique_id=418505844]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75972223
@@ -220,7 +224,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_tipki")
 action_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="TimerLabel" type="Label" parent="."]
+[node name="TimerLabel" type="Label" parent="." unique_id=189456447]
 layout_mode = 0
 offset_left = 134.0
 offset_top = 571.0
@@ -235,7 +239,7 @@ label_settings = SubResource("LabelSettings_85g3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResetPuzzle" type="Button" parent="."]
+[node name="ResetPuzzle" type="Button" parent="." unique_id=1752421090]
 visible = false
 layout_mode = 0
 offset_left = 75.0
@@ -248,7 +252,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_choun")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ya4ey")
 action_mode = 0
 
-[node name="shuffle" type="Button" parent="."]
+[node name="shuffle" type="Button" parent="." unique_id=1503851146]
 layout_mode = 0
 offset_left = 74.0
 offset_top = 701.0
@@ -258,7 +262,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_eb6dy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_trceg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_a8y0u")
 
-[node name="Player1HPBar" type="ProgressBar" parent="."]
+[node name="Player1HPBar" type="ProgressBar" parent="." unique_id=143166490]
 layout_mode = 0
 offset_left = 374.0
 offset_top = 259.0
@@ -271,7 +275,7 @@ value = 15.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Player2HPBar" type="ProgressBar" parent="."]
+[node name="Player2HPBar" type="ProgressBar" parent="." unique_id=411243469]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 259.0
@@ -284,7 +288,7 @@ value = 15.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Player1HP" type="Label" parent="."]
+[node name="Player1HP" type="Label" parent="." unique_id=1582863014]
 layout_mode = 0
 offset_left = 513.0
 offset_top = 374.0
@@ -294,7 +298,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 label_settings = SubResource("LabelSettings_choun")
 
-[node name="Player2HP" type="Label" parent="."]
+[node name="Player2HP" type="Label" parent="." unique_id=1923725366]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 369.0
@@ -304,17 +308,17 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 label_settings = SubResource("LabelSettings_ya4ey")
 
-[node name="Bot" type="Sprite2D" parent="."]
+[node name="Bot" type="Sprite2D" parent="." unique_id=1447927694]
 position = Vector2(76, 516)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_um13p")
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="Player" type="Sprite2D" parent="." unique_id=1589404957]
 position = Vector2(428, 510)
 scale = Vector2(0.5222222, 0.5222222)
 texture = ExtResource("6_rc2tn")
 
-[node name="Puzzle" parent="." instance=ExtResource("7_dtvy1")]
+[node name="Puzzle" parent="." unique_id=248889748 instance=ExtResource("7_dtvy1")]
 layout_direction = 3
 layout_mode = 0
 offset_left = -52.0
@@ -323,7 +327,7 @@ offset_right = -52.0
 offset_bottom = 40.0
 script = null
 
-[node name="prevPuzzle" type="Button" parent="."]
+[node name="prevPuzzle" type="Button" parent="." unique_id=1044932484]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 915.0
@@ -333,7 +337,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_utbpp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mw25s")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tcjrq")
 
-[node name="nextPuzzle" type="Button" parent="."]
+[node name="nextPuzzle" type="Button" parent="." unique_id=130883466]
 layout_mode = 0
 offset_left = 625.0
 offset_top = 915.0
@@ -343,7 +347,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rvs2r")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqxxy")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5ay1a")
 
-[node name="puzzleNumber" type="Label" parent="."]
+[node name="puzzleNumber" type="Label" parent="." unique_id=170447300]
 layout_mode = 0
 offset_left = 342.0
 offset_top = 932.0
@@ -351,6 +355,17 @@ offset_right = 382.0
 offset_bottom = 1004.0
 text = "1"
 label_settings = SubResource("LabelSettings_uvo4r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalTimerLabel" type="Label" parent="." unique_id=1705734245]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 1205.0
+offset_right = 85.0
+offset_bottom = 1244.0
+text = "00:01"
+label_settings = SubResource("LabelSettings_a6lh4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
