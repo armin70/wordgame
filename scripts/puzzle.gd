@@ -1,6 +1,7 @@
 extends Control
 var max_time = 20
 var time_left = 20
+var is_game_running = false
 var valid_words = []
 var rock_valid_words = []
 var paper_valid_words = []
@@ -48,6 +49,8 @@ var current_puzzle_index = 0
 @onready var current_word_label = $"CurrentWordLabel"
 @onready var bot_score_label = $"BotScoreLabel"
 @onready var bot_status_label = $"BotStatusLabel"
+@onready var countdown_overlay = $CountdownOverlay
+@onready var countdown_label = $CountdownOverlay/CenterContainer/CountdownLabel
 var total_seconds: float = 0.0
 
 func _ready():
@@ -56,18 +59,14 @@ func _ready():
 
 	$"PlayerHP".text = str(player_hp)
 	$"BotHP".text = str(bot_hp)
-	start_game()
 	$TimerBar.max_value = max_time
+	await start_countdown()
+	start_game()
 	# connect buttons
 
-
-func get_formatted_time() -> String:
-	var minutes = int(total_seconds) / 60
-	var seconds = int(total_seconds) % 60
-	return "%02d:%02d" % [minutes, seconds]
-
 func _process(delta):
-	time_left -= delta
+	if is_game_running:
+		time_left -= delta
 
 	$TimerLabel.text = str(int(ceil(time_left)))
 	$TimerBar.value = time_left
@@ -78,6 +77,33 @@ func _process(delta):
 	total_seconds += delta
 	# آپدیت کردن متن لیبل با تایمر جهانی
 	total_timer_label.text = get_formatted_time()
+
+func start_countdown() -> void:
+	countdown_overlay.visible = true
+	
+	for i in range(3, 0, -1):
+		countdown_label.text = str(i)
+		await animate_countdown()
+	
+	countdown_label.text = "شروع!"
+	await animate_countdown()
+	
+	countdown_overlay.visible = false
+
+func animate_countdown():
+	countdown_label.scale = Vector2(0.5, 0.5)
+	var tween = create_tween()
+	tween.tween_property(countdown_label, "scale", Vector2(1.2,1.2), 0.3)\
+		.set_trans(Tween.TRANS_BACK)\
+		.set_ease(Tween.EASE_OUT)
+	await tween.finished
+	await get_tree().create_timer(0.5).timeout
+
+func get_formatted_time() -> String:
+	var minutes = int(total_seconds) / 60
+	var seconds = int(total_seconds) % 60
+	return "%02d:%02d" % [minutes, seconds]
+
 # =========================
 # START PUZZLE
 # =========================
@@ -85,6 +111,7 @@ func _process(delta):
 
 
 func start_game():
+	is_game_running = true
 	valid_words = []
 	found_words.clear()
 	word_owners.clear()
@@ -103,10 +130,8 @@ func start_game():
 	current_word_label.text = ""
 	bot_score_label.text = "Bot: 0"
 	bot_status_label.text = ""
-
-
 	_clear_found_words_ui()
-	await get_tree().create_timer(1.5).timeout
+
 	if PuzzleManager.is_player_turn:
 		_start_player_turn()
 	else:
@@ -163,8 +188,10 @@ func update_hp_ui():
 	create_tween().tween_property($BotHPBar, "value", bot_hp, 0.3)
 func _start_player_turn():
 	if game_finished: return
-	update_turn_ui()
+	$"puzzle container".input_enabled = true
+	current_word = ""
 	current_turn = "player"
+	update_turn_ui()
 	print("current turn must be player: ",current_turn)
 	#set_buttons_enabled(true)
 	bot_status_label.text = "نوبت شماست"
@@ -210,6 +237,8 @@ func submit_current_word():
 	$"puzzle container"._clear_all_selections()
 func _start_bot_turn():
 	current_turn = "bot"
+	$"puzzle container".input_enabled = false
+	
 	update_turn_ui()
 	
 	#set_buttons_enabled(false)
@@ -217,14 +246,17 @@ func _start_bot_turn():
 	reset_timer()
 
 	await perform_bot_move()
-
+	print("checking player turn")
 	if not game_finished:
+		print("player turn")
 		_start_player_turn()
 	
 func perform_bot_move():
 	var feedback =""
+	current_word = ""
 	bot_status_label.text = "ربات در حال فکر کردن..."
 	print("ربات در حال فکر کردن...")
+	await get_tree().create_timer(3.2).timeout
 	var bot_found = false
 	current_board = ["Rock","Paper","Scissors"].pick_random()
 	print("current board:",current_board)
@@ -252,16 +284,17 @@ func perform_bot_move():
 		
 		if randf() > 0.3:
 			var chosen = available_words.pick_random()
-			$RPSContainer.remove_type(current_board)
-			$RPSContainer.get_debuff(current_board)
+
 			print("bot multi: ",multiplier)
-			found_words.append(chosen)
 			word_owners[chosen] = "bot"
 			current_word=""
 			for ch in chosen:
 				current_word += ch
 				current_word_label.text = current_word
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.8).timeout
+			found_words.append(chosen)
+			$RPSContainer.remove_type(current_board)
+			$RPSContainer.get_debuff(current_board)
 			add_found_word(chosen, "bot")
 			update_score()
 			update_bot_score()
@@ -393,11 +426,11 @@ func update_turn_ui():
 	var bot_bar = $BotHPBar
 
 	if current_turn == "player":
-		print("player_color", current_turn)
+		print("player_color: ", current_turn)
 		player_bar.modulate = Color.WHITE
 		bot_bar.modulate = Color.GRAY
 	elif current_turn == "bot":
-		print("bot_color", current_turn)
+		print("bot_color: ", current_turn)
 		player_bar.modulate = Color.GRAY
 		bot_bar.modulate = Color.WHITE
 func _on_restart_button_pressed() -> void:

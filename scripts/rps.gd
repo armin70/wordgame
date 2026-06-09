@@ -18,6 +18,7 @@ func _ready():
 	rps_anim.play("loop_rps") # انیمیشن را در حالت لوپ اجرا کنید
 
 func check_selection():
+	rps_anim.pause()
 	var frame = rps_anim.frame
 	user_click_time = Time.get_ticks_msec() / 1000.0
 	if frame == 0:
@@ -31,12 +32,11 @@ func check_selection():
 		print("قیچی")
 		
 	# بعد از انتخاب، انیمیشن را متوقف کنید یا به مرحله بعد بروید
-	rps_anim.stop()
 	play_result_animation()
 	
 
 func play_result_animation():
-	rps_anim.stop()
+	#rps_anim.stop()
 	
 	# ۱. زمان واکنش ربات (یک عدد تصادفی بین ۰.۵ تا ۱.۵ ثانیه)
 	var bot_reaction_time = randf_range(0.5, 1.5)

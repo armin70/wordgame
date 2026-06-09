@@ -122,6 +122,11 @@ font_color = Color(0, 0, 0, 1)
 font = ExtResource("1_bw6k5")
 font_size = 22
 
+[sub_resource type="LabelSettings" id="LabelSettings_utbpp"]
+font = ExtResource("1_bw6k5")
+font_size = 90
+font_color = Color(0, 0, 0, 1)
+
 [node name="game_scene" type="Control" unique_id=1224919347]
 layout_direction = 2
 layout_mode = 3
@@ -403,10 +408,10 @@ texture = ExtResource("4_kk2rg")
 
 [node name="puzzle container" parent="." unique_id=75891022 instance=ExtResource("8_b5spy")]
 layout_mode = 0
-offset_left = 694.0
-offset_top = 11.0
-offset_right = 734.0
-offset_bottom = 51.0
+offset_left = 678.0
+offset_top = 8.0
+offset_right = 718.0
+offset_bottom = 48.0
 
 [node name="prevPuzzle" type="Button" parent="." unique_id=1781281136]
 layout_mode = 0
@@ -443,7 +448,32 @@ vertical_alignment = 1
 position = Vector2(131, 518)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1897293935]
-position = Vector2(364, 634)
+position = Vector2(364, 640)
+
+[node name="CountdownOverlay" type="ColorRect" parent="." unique_id=275972147]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.6627451)
+
+[node name="CenterContainer" type="CenterContainer" parent="CountdownOverlay" unique_id=668102168]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountdownLabel" type="Label" parent="CountdownOverlay/CenterContainer" unique_id=372135923]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_utbpp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="EndGamePopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

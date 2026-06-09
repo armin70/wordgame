@@ -235,7 +235,8 @@ func _input(event):
 			selecting = false
 
 			_finish_swipe()
-
+func disable_letters(check):
+	$Puzzle.set_letter_buttons_disabled(check)
 func _process_swipe_position(pos: Vector2) -> void:
 	if not input_enabled:
 		return
