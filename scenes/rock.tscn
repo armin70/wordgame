@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ce4puu0k5ckhl" path="res://extras/rock sprite sheet.png" id="1_1di36"]
 [ext_resource type="Script" uid="uid://cjjax8hoyd3gm" path="res://scripts/rock.gd" id="1_mek2u"]
+[ext_resource type="Texture2D" uid="uid://duyjmhxehpb5x" path="res://extras/rock2.png" id="3_ik6fu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1di36"]
 atlas = ExtResource("1_1di36")
@@ -27,6 +28,10 @@ region = Rect2(1448, 0, 362, 272)
 atlas = ExtResource("1_1di36")
 region = Rect2(1810, 0, 362, 272)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmkyt"]
+atlas = ExtResource("3_ik6fu")
+region = Rect2(0, 0, 362, 272)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_rmkyt"]
 animations = [{
 "frames": [{
@@ -51,6 +56,14 @@ animations = [{
 "loop": false,
 "name": &"break",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmkyt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
 [node name="rock" type="Node2D" unique_id=2080828846]
@@ -59,4 +72,5 @@ script = ExtResource("1_mek2u")
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=927427797]
 scale = Vector2(0.37570417, 0.37570417)
 sprite_frames = SubResource("SpriteFrames_rmkyt")
-animation = &"break"
+animation = &"idle"
+autoplay = "idle"

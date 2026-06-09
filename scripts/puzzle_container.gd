@@ -114,7 +114,8 @@ func load_prev_puzzle():
 		current_index = 2
 	start_puzzle(pending_puzzles[current_index])
 	change_texture(current_index)
-	
+
+
 func change_texture(index):
 	if index == 0:
 		wheel.texture = WHEEL_ROCK

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bvcohcdrbdnpi"]
 
+[ext_resource type="Script" uid="uid://bbsbhrxpjth2k" path="res://scripts/puzzle_wrapper.gd" id="1_3asjn"]
 [ext_resource type="Texture2D" uid="uid://calqm48l833xu" path="res://extras/wheel paper.png" id="2_5ifmx"]
 [ext_resource type="Texture2D" uid="uid://xbwbpe7sb8uu" path="res://assets/alphabet/ر.png" id="4_3asjn"]
 [ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="4_t8qc4"]
@@ -14,6 +15,7 @@ font_size = 80
 [node name="Puzzle" type="Control" unique_id=595414939]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_3asjn")
 
 [node name="LettersContainer" type="Control" parent="." unique_id=884799417]
 layout_mode = 1

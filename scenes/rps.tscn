@@ -59,4 +59,16 @@ autoplay = "loop_rps"
 position = Vector2(354, 636)
 shape = SubResource("RectangleShape2D_1hquy")
 
+[node name="BotChoice" type="TextureRect" parent="CanvasLayer" unique_id=408400920]
+offset_left = 193.0
+offset_top = 107.0
+offset_right = 555.0
+offset_bottom = 379.0
+
+[node name="result" type="Label" parent="CanvasLayer" unique_id=825631805]
+offset_left = 377.0
+offset_top = 401.0
+offset_right = 417.0
+offset_bottom = 424.0
+
 [connection signal="input_event" from="CanvasLayer/Area2D" to="." method="_on_area_2d_input_event"]

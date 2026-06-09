@@ -209,8 +209,9 @@ func submit_current_word():
 
 	$"puzzle container"._clear_all_selections()
 func _start_bot_turn():
-	update_turn_ui()
 	current_turn = "bot"
+	update_turn_ui()
+	
 	#set_buttons_enabled(false)
 	print("current turn: ",current_turn)
 	reset_timer()
@@ -253,7 +254,6 @@ func perform_bot_move():
 			var chosen = available_words.pick_random()
 			$RPSContainer.remove_type(current_board)
 			$RPSContainer.get_debuff(current_board)
-			$"puzzle container".board_buff(current_board)
 			print("bot multi: ",multiplier)
 			found_words.append(chosen)
 			word_owners[chosen] = "bot"
@@ -393,11 +393,11 @@ func update_turn_ui():
 	var bot_bar = $BotHPBar
 
 	if current_turn == "player":
-		print("player_color")
+		print("player_color", current_turn)
 		player_bar.modulate = Color.WHITE
 		bot_bar.modulate = Color.GRAY
 	elif current_turn == "bot":
-		print("bot_color")
+		print("bot_color", current_turn)
 		player_bar.modulate = Color.GRAY
 		bot_bar.modulate = Color.WHITE
 func _on_restart_button_pressed() -> void:
