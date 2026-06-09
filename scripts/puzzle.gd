@@ -112,7 +112,6 @@ func get_formatted_time() -> String:
 
 func start_game():
 	is_game_running = true
-	valid_words = []
 	found_words.clear()
 	word_owners.clear()
 	score = 0
@@ -209,7 +208,7 @@ func reset_timer():
 # =========================
 
 func submit_current_word():
-
+	print("valid_words:",valid_words)
 	if current_word in valid_words \
 	and current_word not in found_words:
 
@@ -221,7 +220,7 @@ func submit_current_word():
 
 		#found_count_label.text = str(found_words.size()) \
 		#+ " / " + str(valid_words.size())
-		
+		print("✅ درست")
 		feedback_label.text = "✅ درست"
 		print("player_board:",player_current_board)
 		apply_word_effect(current_word, "player")
@@ -231,7 +230,7 @@ func submit_current_word():
 		$"puzzle container".board_buff(player_current_board)
 		turn_over()
 	else:
-
+		print("❌ غلط")
 		feedback_label.text = "❌ غلط"
 
 	$"puzzle container"._clear_all_selections()
@@ -291,7 +290,7 @@ func perform_bot_move():
 			for ch in chosen:
 				current_word += ch
 				current_word_label.text = current_word
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.5).timeout
 			found_words.append(chosen)
 			$RPSContainer.remove_type(current_board)
 			$RPSContainer.get_debuff(current_board)

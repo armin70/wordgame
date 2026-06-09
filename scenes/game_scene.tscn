@@ -447,9 +447,6 @@ vertical_alignment = 1
 [node name="RPSContainer" parent="." unique_id=917461322 instance=ExtResource("10_mw25s")]
 position = Vector2(131, 518)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1897293935]
-position = Vector2(364, 640)
-
 [node name="CountdownOverlay" type="ColorRect" parent="." unique_id=275972147]
 visible = false
 layout_mode = 1

@@ -83,12 +83,16 @@ func _ready() -> void:
 	
 	
 func start_puzzle(data: Dictionary):
+	get_parent().valid_words = []
+
 	letters = data["letters"]
 	_generate_letter_buttons()
 	for i in range(3):
 		var puzzles = pending_puzzles[i-1]
 		for w in puzzles["words"]:
 			var word_str = w["word"]
+			if word_str not in get_parent().valid_words:
+				get_parent().valid_words.append(word_str)
 			if i == 0:
 				if word_str not in get_parent().rock_valid_words:
 					get_parent().rock_valid_words.append(word_str)
@@ -98,8 +102,7 @@ func start_puzzle(data: Dictionary):
 			elif i == 2:
 				if word_str not in get_parent().scissors_valid_words:
 					get_parent().scissors_valid_words.append(word_str)
-			if word_str not in get_parent().valid_words:
-				get_parent().valid_words.append(word_str)
+
 	
 func load_next_puzzle():
 	current_index += 1
