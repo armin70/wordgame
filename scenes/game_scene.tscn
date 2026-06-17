@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csai21487hcnt" path="res://extras/version 0.1.3(icons).png" id="3_utbpp"]
 [ext_resource type="Texture2D" uid="uid://crpwasoqu3m6b" path="res://extras/player.png" id="4_kk2rg"]
 [ext_resource type="PackedScene" uid="uid://dj1j541bnpras" path="res://scenes/puzzle_container.tscn" id="8_b5spy"]
+[ext_resource type="Texture2D" uid="uid://brgcrqp3f0a3a" path="res://extras/pause.png" id="9_mw25s"]
 [ext_resource type="PackedScene" uid="uid://ds8qtausq5e8i" path="res://scenes/rps__container.tscn" id="10_mw25s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldkr4"]
@@ -25,6 +26,11 @@ corner_radius_bottom_left = 35
 font = ExtResource("1_bw6k5")
 font_size = 35
 font_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mw25s"]
+font = ExtResource("1_bw6k5")
+font_size = 45
+font_color = Color(0.42745098, 1, 0.015686275, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkv2x"]
 content_margin_left = 10.0
@@ -95,6 +101,10 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_tcjrq"]
+font = ExtResource("1_bw6k5")
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_choun"]
 font = ExtResource("1_bw6k5")
@@ -223,6 +233,16 @@ label_settings = SubResource("LabelSettings_0wfyh")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="WordDamage" type="Label" parent="." unique_id=773923033]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 652.0
+offset_right = 277.0
+offset_bottom = 724.0
+label_settings = SubResource("LabelSettings_mw25s")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FeedbackLabel" type="Label" parent="." unique_id=838785517]
 visible = false
@@ -376,6 +396,26 @@ value = 15.0
 fill_mode = 3
 show_percentage = false
 
+[node name="PlayerHPDamage" type="Label" parent="." unique_id=1072116773]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 56.0
+offset_right = 541.0
+offset_bottom = 120.0
+label_settings = SubResource("LabelSettings_tcjrq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotHPDamage" type="Label" parent="." unique_id=589719380]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 63.0
+offset_right = 206.0
+offset_bottom = 127.0
+label_settings = SubResource("LabelSettings_tcjrq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerHP" type="Label" parent="." unique_id=272950325]
 layout_mode = 0
 offset_left = 506.0
@@ -433,6 +473,16 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rvs2r")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqxxy")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5ay1a")
 
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1702837305]
+process_mode = 3
+layout_mode = 0
+offset_left = 27.0
+offset_top = 308.0
+offset_right = 177.0
+offset_bottom = 458.0
+scale = Vector2(0.578823, 0.578823)
+texture_normal = ExtResource("9_mw25s")
+
 [node name="TotalTimerLabel" type="Label" parent="." unique_id=1826637056]
 layout_mode = 0
 offset_left = 27.0
@@ -479,3 +529,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="shuffle" to="." method="_on_shuffle_pressed"]
 [connection signal="pressed" from="prevPuzzle" to="." method="_on_prev_puzzle_pressed"]
 [connection signal="pressed" from="nextPuzzle" to="." method="_on_next_puzzle_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

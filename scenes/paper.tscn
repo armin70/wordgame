@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cjjax8hoyd3gm" path="res://scripts/rock.gd" id="1_vas6c"]
 [ext_resource type="Texture2D" uid="uid://c4uy0p3878nhm" path="res://extras/paper sprite sheet.png" id="2_vas6c"]
 [ext_resource type="Texture2D" uid="uid://0lu1gkof3yhn" path="res://extras/paper2.png" id="3_cbjgq"]
+[ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="4_jhmja"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbjgq"]
 atlas = ExtResource("2_vas6c")
@@ -45,10 +46,19 @@ animations = [{
 "texture": SubResource("AtlasTexture_g4oad")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_g4oad")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pohdc")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2531")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2531")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gra7")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7gra7")
@@ -66,11 +76,40 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_g4oad"]
+font = ExtResource("4_jhmja")
+font_size = 50
+font_color = Color(0.40392157, 1, 0.36862746, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jhmja"]
+font = ExtResource("4_jhmja")
+font_size = 50
+font_color = Color(1, 0.16470589, 0.09019608, 1)
+
 [node name="rock" type="Node2D" unique_id=2080828846]
 script = ExtResource("1_vas6c")
 
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=927427797]
 scale = Vector2(0.37570417, 0.37570417)
 sprite_frames = SubResource("SpriteFrames_rmkyt")
-animation = &"idle"
+animation = &"break"
 autoplay = "idle"
+frame = 8
+frame_progress = 1.0
+
+[node name="Multiplier" type="Label" parent="." unique_id=1250212555]
+offset_left = -26.0
+offset_top = -108.0
+offset_right = 25.0
+offset_bottom = -29.0
+label_settings = SubResource("LabelSettings_g4oad")
+
+[node name="debuff" type="Label" parent="." unique_id=359054072]
+offset_left = -32.0
+offset_top = -112.0
+offset_right = 34.0
+offset_bottom = -33.0
+label_settings = SubResource("LabelSettings_jhmja")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1

@@ -9,14 +9,19 @@ const ROCK = preload("uid://ww2v4le4n3cp")
 const SCISSOR = preload("uid://bji4rmdljiynn")
 @onready var bot_choice_texture: TextureRect = $CanvasLayer/BotChoice
 @onready var result: Label = $CanvasLayer/result
-
+var time_left = 15
 @onready var rps_anim = $CanvasLayer/Area2D/RPSAnimationPlayer# انیمیشن شما
 var current_choice: Choice
 
 func _ready():
 	bot_decision_time = randf_range(0.5, 3.0)
 	rps_anim.play("loop_rps") # انیمیشن را در حالت لوپ اجرا کنید
-
+func _process(delta) -> void:
+	time_left -= delta
+	$CanvasLayer/TimerLabel.text = str(int(ceil(time_left)))
+	$CanvasLayer/TimerBar.value = time_left
+	if time_left <= 0:
+		start_main_game()
 func check_selection():
 	rps_anim.pause()
 	var frame = rps_anim.frame
@@ -59,11 +64,11 @@ func play_result_animation():
 	if draw:
 		if user_click_time < bot_decision_time:
 			print("شما زودتر سابمیت کردید! شما برنده شدید.")
-			result.text = "شما برنده شدید"
+			result.text = "شما زودتر سابمیت کردید! شما برنده شدید."
 			PuzzleManager.is_player_turn = true
 		else:
 			print("ربات سریع‌تر بود! او شروع‌کننده است.")
-			result.text = "ربات برنده شد"
+			result.text = "ربات سریع‌تر بود! او شروع‌کننده است."
 			PuzzleManager.is_player_turn = true
 	
 

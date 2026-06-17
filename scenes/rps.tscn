@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cut3lq5gi7x7l" path="res://scripts/rps.gd" id="1_1hquy"]
 [ext_resource type="Texture2D" uid="uid://cn718142jdbqv" path="res://extras/r,p,s sprite sheet.png" id="2_vp3gd"]
+[ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="3_vp3gd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbgi4"]
 atlas = ExtResource("2_vp3gd")
@@ -35,13 +36,27 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hquy"]
 size = Vector2(717, 1280)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1hquy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp3gd"]
+bg_color = Color(0.8784314, 0.8862745, 0.88235295, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_qj5d6"]
+font = ExtResource("3_vp3gd")
+font_size = 40
+
 [node name="RPS" type="Control" unique_id=1171910879]
+layout_direction = 2
 layout_mode = 3
 anchors_preset = 0
-offset_left = 12.0
-offset_top = 6.0
-offset_right = 12.0
-offset_bottom = 6.0
+offset_left = 43.0
+offset_top = 24.0
+offset_right = 43.0
+offset_bottom = 24.0
 script = ExtResource("1_1hquy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=191490923]
@@ -66,9 +81,30 @@ offset_right = 555.0
 offset_bottom = 379.0
 
 [node name="result" type="Label" parent="CanvasLayer" unique_id=825631805]
-offset_left = 377.0
-offset_top = 401.0
-offset_right = 417.0
-offset_bottom = 424.0
+offset_left = 162.0
+offset_top = 391.0
+offset_right = 202.0
+offset_bottom = 414.0
+
+[node name="TimerBar" type="ProgressBar" parent="CanvasLayer" unique_id=242062347]
+offset_left = 179.0
+offset_top = 775.0
+offset_right = 592.0
+offset_bottom = 838.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_1hquy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vp3gd")
+max_value = 15.0
+value = 15.0
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=401728253]
+offset_left = 120.0
+offset_top = 780.0
+offset_right = 160.0
+offset_bottom = 844.0
+text = "15"
+label_settings = SubResource("LabelSettings_qj5d6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="input_event" from="CanvasLayer/Area2D" to="." method="_on_area_2d_input_event"]

@@ -15,6 +15,8 @@ font_size = 80
 [node name="Puzzle" type="Control" unique_id=595414939]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 1.0
+offset_right = 1.0
 script = ExtResource("1_3asjn")
 
 [node name="LettersContainer" type="Control" parent="." unique_id=884799417]
@@ -58,10 +60,10 @@ stretch_mode = 5
 
 [node name="Letter3" type="TextureButton" parent="LettersContainer" unique_id=1169380267]
 layout_mode = 0
-offset_left = 190.99997
-offset_top = 592.0
-offset_right = 328.99997
-offset_bottom = 702.0
+offset_left = 203.99997
+offset_top = 585.0
+offset_right = 341.99997
+offset_bottom = 695.0
 scale = Vector2(0.74469316, 0.74469316)
 texture_normal = SubResource("CompressedTexture2D_4opeh")
 ignore_texture_size = true
@@ -70,9 +72,9 @@ stretch_mode = 5
 [node name="Letter4" type="TextureButton" parent="LettersContainer" unique_id=328532410]
 layout_mode = 0
 offset_left = 389.0
-offset_top = 596.0
+offset_top = 585.0
 offset_right = 527.0
-offset_bottom = 706.0
+offset_bottom = 695.0
 scale = Vector2(0.74469316, 0.74469316)
 texture_normal = SubResource("CompressedTexture2D_4opeh")
 ignore_texture_size = true

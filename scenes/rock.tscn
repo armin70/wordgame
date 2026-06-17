@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ce4puu0k5ckhl" path="res://extras/rock sprite sheet.png" id="1_1di36"]
 [ext_resource type="Script" uid="uid://cjjax8hoyd3gm" path="res://scripts/rock.gd" id="1_mek2u"]
 [ext_resource type="Texture2D" uid="uid://duyjmhxehpb5x" path="res://extras/rock2.png" id="3_ik6fu"]
+[ext_resource type="FontFile" uid="uid://pfg8ofwqc0xk" path="res://assets/fonts/Lalezar-Regular.ttf" id="4_872ht"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1di36"]
 atlas = ExtResource("1_1di36")
@@ -42,7 +43,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_mek2u")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mek2u")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ik6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_872ht")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_872ht")
@@ -66,11 +76,40 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_p2d0s"]
+font = ExtResource("4_872ht")
+font_size = 50
+font_color = Color(0.40392157, 1, 0.36862746, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_872ht"]
+font = ExtResource("4_872ht")
+font_size = 50
+font_color = Color(1, 0.16470589, 0.09019608, 1)
+
 [node name="rock" type="Node2D" unique_id=2080828846]
 script = ExtResource("1_mek2u")
 
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=927427797]
 scale = Vector2(0.37570417, 0.37570417)
 sprite_frames = SubResource("SpriteFrames_rmkyt")
-animation = &"idle"
+animation = &"break"
 autoplay = "idle"
+frame = 8
+frame_progress = 1.0
+
+[node name="Multiplier" type="Label" parent="." unique_id=1851570550]
+offset_left = -26.0
+offset_top = -108.0
+offset_right = 25.0
+offset_bottom = -29.0
+label_settings = SubResource("LabelSettings_p2d0s")
+
+[node name="debuff" type="Label" parent="." unique_id=1051217675]
+offset_left = -32.0
+offset_top = -112.0
+offset_right = 34.0
+offset_bottom = -33.0
+label_settings = SubResource("LabelSettings_872ht")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_direction = 1

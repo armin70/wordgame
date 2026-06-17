@@ -137,23 +137,107 @@ func start_game():
 		_start_bot_turn()
 	update_turn_ui()
 
+func play_popup_effect(label):
+	label.visible = true
+
+	# اگر قبلاً افکتی رویش اجرا شده بود
+	label.scale = Vector2.ONE
+	label.modulate.a = 1.0
+
+	var tween = create_tween()
+
+	# بزرگ شدن
+	tween.tween_property(label, "scale", Vector2(2, 2), 0.3)\
+		.set_trans(Tween.TRANS_BACK)\
+		.set_ease(Tween.EASE_OUT)
+
+	# کمی ماندن
+	tween.tween_interval(0.5)
+
+	# برگشت به حالت عادی
+	tween.tween_property(label, "scale", Vector2.ONE, 0.3)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_OUT)
+
+	# محو شدن
+	tween.tween_property(label, "modulate:a", 0.0, 0.6)
+
+	await tween.finished
+
+	label.visible = false
+
+	# برای استفاده بعدی
+	label.modulate.a = 1.0
+	label.scale = Vector2.ONE
+
+
 func apply_word_effect(word: String, owner: String):
 	var damage = word.length()
+	$WordDamage.text = str(damage)
+	play_popup_effect($WordDamage)
+	await play_popup_effect($WordDamage)
+	$WordDamage.text = ""
 	multiplier +=1
+	is_game_running = false
 	if owner == "player":
-		bot_hp -= (multiplier  * damage) - debuff
-
+		bot_hp -= damage
+		$BotHPDamage.text = "-" + str(damage)
+		$BotHPDamage.modulate = Color(1, 0.3, 0.3)
+		play_popup_effect($BotHPDamage)
+		update_hp_ui()
+		await get_tree().create_timer(.4).timeout
+		$RPSContainer.remove_type(player_current_board)
+		
+		for i in range(0,multiplier):
+			await get_tree().create_timer(.5).timeout
+			$BotHPDamage.text = "-" + str(damage)
+			$BotHPDamage.modulate = Color(1, 0.3, 0.3)
+			play_popup_effect($BotHPDamage)
+			
+			bot_hp -= damage
+			update_hp_ui()
+		await get_tree().create_timer(.5).timeout
+		$BotHPDamage.text = "+" + str(debuff)
+		$BotHPDamage.modulate = Color(0.0, 0.536, 0.287, 1.0)
+		bot_hp += debuff
+		play_popup_effect($BotHPDamage)
+		
+		$RPSContainer.get_debuff(player_current_board)
+		update_hp_ui()
+		
 		var bar = $BotHPBar
 		bar.modulate = Color(1, 0.3, 0.3)
 		create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 		print('playeeeeeeeeeer:',(multiplier  * damage) - debuff)
 	else:
-		player_hp -= (multiplier  * damage) - debuff
-
+		player_hp -= damage
+		update_hp_ui()
+		play_popup_effect($PlayerHPDamage)
+		$PlayerHPDamage.text = "-" + str(damage)
+		$PlayerHPDamage.modulate = Color(1, 0.3, 0.3)
+		await get_tree().create_timer(.4).timeout
+		$RPSContainer.remove_type(current_board)
+		for i in range(0,multiplier):
+			await get_tree().create_timer(.5).timeout
+			play_popup_effect($PlayerHPDamage)
+			$PlayerHPDamage.text = "-" + str(damage)
+			$PlayerHPDamage.modulate = Color(1, 0.3, 0.3)
+			player_hp -= damage
+			update_hp_ui()
+		await get_tree().create_timer(.5).timeout
+		player_hp += debuff
+		play_popup_effect($PlayerHPDamage)
+		$PlayerHPDamage.text = "+" + str(debuff)
+		$PlayerHPDamage.modulate = Color(0.0, 0.536, 0.287, 1.0)
+		$RPSContainer.get_debuff(current_board)
+		update_hp_ui()
 		var bar = $"PlayerHPBar"
 		bar.modulate = Color(1, 0.3, 0.3)
 		create_tween().tween_property(bar, "modulate", Color(1,1,1), 0.4)
 		print('boooooooooot:',(multiplier  * damage) - debuff)
+	multiplier = 0
+	is_game_running = true
+	
 	update_hp_ui()
 	check_game_over()
 func check_game_over():
@@ -225,8 +309,7 @@ func submit_current_word():
 		print("player_board:",player_current_board)
 		apply_word_effect(current_word, "player")
 		add_found_word(current_word,'player')
-		$RPSContainer.remove_type(player_current_board)
-		$RPSContainer.get_debuff(player_current_board)
+
 		$"puzzle container".board_buff(player_current_board)
 		turn_over()
 	else:
@@ -252,7 +335,6 @@ func _start_bot_turn():
 	
 func perform_bot_move():
 	var feedback =""
-	current_word = ""
 	bot_status_label.text = "ربات در حال فکر کردن..."
 	print("ربات در حال فکر کردن...")
 	await get_tree().create_timer(3.2).timeout
@@ -292,8 +374,7 @@ func perform_bot_move():
 				current_word_label.text = current_word
 				await get_tree().create_timer(0.5).timeout
 			found_words.append(chosen)
-			$RPSContainer.remove_type(current_board)
-			$RPSContainer.get_debuff(current_board)
+
 			add_found_word(chosen, "bot")
 			update_score()
 			update_bot_score()
@@ -446,3 +527,7 @@ func _on_next_puzzle_pressed() -> void:
 
 func _on_prev_puzzle_pressed() -> void:
 	$"puzzle container".load_prev_puzzle()
+
+
+func _on_texture_button_pressed() -> void:
+	get_tree().paused = !get_tree().paused

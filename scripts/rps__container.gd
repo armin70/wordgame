@@ -84,8 +84,10 @@ func get_debuff(type_name):
 	elif type_name == "Scissors":
 		targets = get_tree().get_nodes_in_group("Rock")
 		debuff = targets.size()
+	print("targets:",targets)
+	for node in targets:
+		node.get_debuff("-1")
 	get_parent().debuff = debuff
-	print("debuf:",debuff)
 
 func fill_free_space():
 	print("filled")
